@@ -346,6 +346,7 @@ autocmd BufNewFile *.hpp,*.cpp,*.cc exec ":call Addreadmecpp()"
 autocmd BufNewFile *.py exec ":call Addreadmepy()"
 autocmd BufNewFile *.sh exec ":call Addreadmesh()"
 autocmd BufNewFile *.[ch] exec ":call Addreadmec()"
+autocmd BufNewFile *.java exec ":call Addreadmejava()"
 
 function Addreadmecpp()
     call setline(1, "// ")
@@ -389,5 +390,15 @@ function Addreadmesh()
 	call append(4, "## ")
     call append(5, " ")
     call append(6, "#!/bin/bash")
+endf
+
+function Addreadmejava()
+    call setline(1, "// ")
+	call append(1, "// " .expand("%:t"))
+	call append(2, "// @ianpasm(kno30826@gmail.com)")
+	call append(3, "// ".strftime("%Y-%m-%d %H:%M:%S"))
+	call append(4, "// ")
+    call append(5, " ")
+    call append(6, "package ")
 endf
 
