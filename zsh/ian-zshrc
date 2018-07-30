@@ -7,7 +7,7 @@ export ZSH=/Users/ianpasm/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
- ZSH_THEME="robbyrussell"
+ ZSH_THEME="random"
 # ZSH_THEME="eastwood"
 
 # Set list of themes to load
@@ -15,7 +15,11 @@ export ZSH=/Users/ianpasm/.oh-my-zsh
 # cause zsh load theme from this variable instead of
 # looking in ~/.oh-my-zsh/themes/
 # An empty array have no effect
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+ZSH_THEME_RANDOM_CANDIDATES=( 
+    "robbyrussell" 
+    "agnoster" 
+    "eastwood"
+)
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -61,6 +65,8 @@ HIST_STAMPS="yyyy-mm-dd"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  brew
+  osx
   autojump
   zsh-syntax-highlighting
 )
@@ -111,6 +117,10 @@ alias fastping='ping -c 100 -s.2'
 alias ports='netstat -tulanp'
 alias wget='wget -c'
 alias git='hub'
+alias srczsh='source ~/.zshrc'
+alias srcvim='source ~/.vimrc'
+alias c='clear'
+alias fuck='brew update;brew upgrade'
 
 # creatw new command
 alias path='echo -e ${PATH//:/\\n}'
@@ -203,3 +213,6 @@ function mkdircd(){
 }
 
 
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
