@@ -108,7 +108,7 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias bc='bc -l'
 alias sha1='openssl sha1'
-alias diff='colordiff' # need install package
+alias cdiff='colordiff' # need install package
 alias mount='mount | column -t'
 alias h='history'
 alias j='jobs -l'
@@ -116,19 +116,24 @@ alias ping='ping -c 5'
 alias fastping='ping -c 100 -s.2'
 alias ports='netstat -tulanp'
 alias wget='wget -c'
-alias srczsh='source ~/.zshrc'
-alias srcvim='source ~/.vimrc'
-alias fuck='brew update;brew upgrade'
-alias v='vim'
-
-# creatw new command
 alias path='echo -e ${PATH//:/\\n}'
 alias now='date'
+
+alias sz='source ~/.zshrc'
+alias sv='source ~/.vimrc'
+alias fuck='brew update;brew upgrade'
+alias v='vim'
+alias vz='vim ~/.zshrc'
+alias vv='vim ~/.vimrc'
+alias ga='git add'
+alias gcm='git commit -m'
+alias gs='git status -s'
+alias gc='git commit -m "Update README.md"'
+
 
 # install autojump
 [[ -s $HOME.autojump/etc/profile.d/autojump.sh  ]] && source $HOME.autojump/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
-
 
 #source ~/.oh-my-zsh/plugins/incr/incr*.zsh
 
@@ -190,7 +195,7 @@ ex ()
       *.tar.bz2)   tar xjf $1   ;;
       *.tar.gz)    tar xzf $1   ;;
       *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1     ;;
+      *.rar)       unrar x $1   ;;
       *.gz)        gunzip $1    ;;
       *.tar)       tar xf $1    ;;
       *.tbz2)      tar xjf $1   ;;
@@ -211,7 +216,34 @@ function mkdircd(){
     mkdir -p "$@" && eval cd "\"\$$#\"";
 }
 
-
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
+## fuck homebrew
+alias fhb='export HOMEBREW_NO_AUTO_UPDATE=true'
+
+## taskbook
+alias tb='/Users/ianpasm/.npm-packages/bin/tb'
+
+## node global
+alias mocha='$HOME/.npm-packages/bin/mocha'
+alias _mocha='$HOME/.npm-packages/bin/_mocha'
+alias istanbul='$HOME/.npm-packages/bin/istanbul'
+alias nodemon='$HOME/.npm-packages/bin/nodemon'
+
+## wudaodict
+alias ws='wd -s'
+alias wo='wd -o'
+
+
+
+
+
+
+
+
+
+
+
+
