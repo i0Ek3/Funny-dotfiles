@@ -347,11 +347,17 @@ autocmd BufNewFile *.py exec ":call Addreadmepy()"
 autocmd BufNewFile *.sh exec ":call Addreadmesh()"
 autocmd BufNewFile *.[ch] exec ":call Addreadmec()"
 autocmd BufNewFile *.java exec ":call Addreadmejava()"
+"autocmd BufNewFile *.go exec ":call Addreadmego()"
+"autocmd BufNewFile *.php exec ":call Addreadmephp()"
+"autocmd BufNewFile *.rb exec ":call Addreadmerb()"
+"autocmd BufNewFile *.js exec ":call Addreadmejs()"
+autocmd BufNewFile *.js,*.go,*.rb,*.php,*.swift exec ":call Addreadmegeneral()"
+
 
 function Addreadmecpp()
     call setline(1, "// ")
 	call append(1, "// " .expand("%:t"))
-	call append(2, "// @ianpasm(kno30826@gmail.com)")
+	call append(2, "// @i0Ek3(kno30826@gmail.com)")
 	call append(3, "// ".strftime("%Y-%m-%d %H:%M:%S"))
 	call append(4, "// ")
 	call append(5, " ")
@@ -364,7 +370,7 @@ endf
 function Addreadmec()
     call setline(1, "// ")
 	call append(1, "// " .expand("%:t"))
-	call append(2, "// @ianpasm(kno30826@gmail.com)")
+	call append(2, "// @i0Ek3(kno30826@gmail.com)")
 	call append(3, "// ".strftime("%Y-%m-%d %H:%M:%S"))
 	call append(4, "// ")
 	call append(5, " ")
@@ -374,7 +380,7 @@ endf
 function Addreadmepy()
     call setline(1, "## ")
 	call append(1, "## " .expand("%:t"))
-	call append(2, "## @ianpasm(kno30826@gmail.com)")
+	call append(2, "## @i0Ek3(kno30826@gmail.com)")
 	call append(3, "## ".strftime("%Y-%m-%d %H:%M:%S"))
 	call append(4, "## ")
     call append(5, " ")
@@ -385,7 +391,7 @@ endf
 function Addreadmesh()
     call setline(1, "## ")
 	call append(1, "## " .expand("%:t"))
-	call append(2, "## @ianpasm(kno30826@gmail.com)")
+	call append(2, "## @i0Ek3(kno30826@gmail.com)")
 	call append(3, "## ".strftime("%Y-%m-%d %H:%M:%S"))
 	call append(4, "## ")
     call append(5, " ")
@@ -395,10 +401,19 @@ endf
 function Addreadmejava()
     call setline(1, "// ")
 	call append(1, "// " .expand("%:t"))
-	call append(2, "// @ianpasm(kno30826@gmail.com)")
+	call append(2, "// @i0Ek3(kno30826@gmail.com)")
 	call append(3, "// ".strftime("%Y-%m-%d %H:%M:%S"))
 	call append(4, "// ")
     call append(5, " ")
     call append(6, "package ")
 endf
 
+function Addreadmegeneral()
+    call setline(1, "// ")
+	call append(1, "// " .expand("%:t"))
+	call append(2, "// @i0Ek3(kno30826@gmail.com)")
+	call append(3, "// ".strftime("%Y-%m-%d %H:%M:%S"))
+	call append(4, "// ")
+    call append(5, " ")
+    call append(6, " ")
+endf
