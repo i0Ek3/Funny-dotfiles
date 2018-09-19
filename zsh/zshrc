@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/ianpasm/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -224,7 +224,7 @@ export NVM_DIR="$HOME/.nvm"
 alias fhb='export HOMEBREW_NO_AUTO_UPDATE=true'
 
 ## taskbook
-alias tb='/Users/ianpasm/.npm-packages/bin/tb'
+alias tb='$HOME/.npm-packages/bin/tb'
 
 ## node global
 alias mocha='$HOME/.npm-packages/bin/mocha'
