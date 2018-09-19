@@ -1,6 +1,6 @@
 # Funny-dotfiles
 
-Make your creative work more effiency.
+Make your creative work more efficiency.
 
 
 ## Content
