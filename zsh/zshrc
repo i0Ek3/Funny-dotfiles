@@ -231,10 +231,7 @@ alias clone='git clone'
 alias mine='cd /Volumes/2Tmac/github/mine'
 alias third='cd /Volumes/2Tmac/github/third'
 alias solc='/usr/local/bin/solcjs'
-alias new='node /Volumes/2Tmac/github/mine/Snippets/JavaScript/generateRandomStr.js'
-alias ju="jupyter notebook"
-alias ub='sudo /Applications/ubports-installer.app/Contents/MacOS/ubports-installer'
-alias bdy='/Volumes/macStore/BaiduPCS-Go-v3.5.6-darwin-osx-amd64/BaiduPCS-Go'
+alias jn="jupyter notebook"
 alias vh='vim ~/.hyper.js'
 
 
