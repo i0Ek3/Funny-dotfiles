@@ -17,7 +17,7 @@ ZSH_THEME="random"
 # An empty array have no effect
 ZSH_THEME_RANDOM_CANDIDATES=( 
     "robbyrussell" 
-    "agnoster" 
+    #"agnoster" 
 )
 
 # Uncomment the following line to use case-sensitive completion.
@@ -67,6 +67,10 @@ plugins=(
   brew
   osx
   autojump
+  sublime
+  web-search
+  extract
+  zsh-autosuggestions
   zsh-syntax-highlighting
 )
 
@@ -101,7 +105,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# alias
+## common
 alias c='clear'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -118,23 +122,13 @@ alias wget='wget -c'
 alias path='echo -e ${PATH//:/\\n}'
 alias now='date'
 
+## zsh&vim
 alias sz='source ~/.zshrc'
 alias sv='source ~/.vimrc'
 alias v='vim'
 alias vz='vim ~/.zshrc'
 alias vv='vim ~/.vimrc'
-alias ga='git add'
-alias g='git add .'
-alias gcm='git commit -m'
-alias gs='git status -s'
-alias gc='git commit -m "Update README.md"'
-alias gp='git pull'
 
-# install autojump
-[[ -s $HOME.autojump/etc/profile.d/autojump.sh  ]] && source $HOME.autojump/etc/profile.d/autojump.sh
-autoload -U compinit && compinit -u
-
-#source ~/.oh-my-zsh/plugins/incr/incr*.zsh
 
 # go env
 export GOPATH=$HOME/go
@@ -215,26 +209,43 @@ function mkdircd(){
     mkdir -p "$@" && eval cd "\"\$$#\"";
 }
 
-# nvm
+## nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
-## fuck homebrew
+
+## homebrew
 alias fhb='export HOMEBREW_NO_AUTO_UPDATE=true'
 
 ## wudaodict
 alias ws='wd -s'
 alias wo='wd -o'
-alias reboot='sudo reboot'
-alias shutdown='sudo shutdown -h now'
+
+## system
+alias rb='sudo reboot'
+alias sd='sudo shutdown -h now'
+
+## git
 alias clone='git clone'
+alias ga='git add'
+alias g='git add .'
+alias gcm='git commit -m'
+alias gs='git status -s'
+alias gc='git commit -m "Update README.md"'
+alias gp='git pull'
+
+## path
 alias mine='cd /Volumes/2Tmac/github/mine'
 alias third='cd /Volumes/2Tmac/github/third'
-alias solc='/usr/local/bin/solcjs'
+
+## editor
 alias jn="jupyter notebook"
-alias vh='vim ~/.hyper.js'
+alias vs="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
 
 
+## Unavaiable
+#alias solc='/usr/local/bin/solcjs'
+#alias vh='vim ~/.hyper.js'
 
 
 
