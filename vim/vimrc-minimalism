@@ -1,0 +1,10 @@
+syntax enable
+syntax on
+set number
+set ruler
+set cursorline
+set cursorcolumn
+set selectmode=mouse,key
+set mouse=a
+set autoindent
+set cindent
