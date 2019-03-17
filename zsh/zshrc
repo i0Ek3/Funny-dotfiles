@@ -16,7 +16,19 @@ ZSH_THEME="random"
 # looking in ~/.oh-my-zsh/themes/
 # An empty array have no effect
 ZSH_THEME_RANDOM_CANDIDATES=( 
-    "robbyrussell" 
+    "minimal"
+    "garyblessington"
+    "imajes"
+    "sammy"
+    "clean"
+    "gallois"
+    "macovsky"
+    "fishy"
+    "sunaku"
+    "wuffers"
+    #"robbyrussell" 
+    "sunrise"
+    "zhann"
     #"agnoster" 
 )
 
@@ -233,23 +245,47 @@ alias gcm='git commit -m'
 alias gs='git status -s'
 alias gc='git commit -m "Update README.md"'
 alias gp='git pull'
+alias glp='git lfs push origin master'
 
 ## path
 alias mine='cd /Volumes/2Tmac/github/mine'
 alias third='cd /Volumes/2Tmac/github/third'
+alias 1t='/Volumes/1Tmac/'
+alias 2t='/Volumes/2Tmac/'
 
 ## editor
 alias jn="jupyter notebook"
 alias vs="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
 
+## adb
+alias ai='adb install'
+alias ffr='fastboot flash recovery'
+alias ad='adb devices'
+alias fd='fastboot devices'
+alias arr='adb reboot recovery'
+alias arb='adb reboot bootloader'
+alias fr='fastboot reboot'
+alias asl='adb sideload'
 
 ## Unavaiable
 #alias solc='/usr/local/bin/solcjs'
 #alias vh='vim ~/.hyper.js'
 
+## leetcode
+alias lc='leetcode'
+alias leetcode='/Volumes/2Tmac/github/mine/LeetCode/'
 
+## gitea
+alias tea='/Volumes/1Tmac/Download/gitea-1.7.2-darwin-10.6-amd64'
 
+## redis
+alias redis='/Applications/Redis.app/Contents/Resources/Vendor/redis/bin/redis-cli'
 
+## brew
+alias bi='brew install'
+alias bu='brew update ; brew upgrade'
 
-
+## jekyll
+alias run='bundle exec jekyll serve'
+alias jr='jekyll server -w --baseurl='
 
