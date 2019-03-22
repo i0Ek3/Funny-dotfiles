@@ -17,18 +17,12 @@ ZSH_THEME="random"
 # An empty array have no effect
 ZSH_THEME_RANDOM_CANDIDATES=( 
     "minimal"
-    "garyblessington"
     "imajes"
     "sammy"
-    "clean"
-    "gallois"
-    "macovsky"
-    "fishy"
-    "sunaku"
-    "wuffers"
+    #"fishy"
+    #"dracula"
+    #"macovsky"
     #"robbyrussell" 
-    "sunrise"
-    "zhann"
     #"agnoster" 
 )
 
@@ -288,4 +282,11 @@ alias bu='brew update ; brew upgrade'
 ## jekyll
 alias run='bundle exec jekyll serve'
 alias jr='jekyll server -w --baseurl='
+
+## tmux
+alias st='source ~/.tmux.conf'
+alias vt='vim ~/.tmux.conf'
+
+
+
 
