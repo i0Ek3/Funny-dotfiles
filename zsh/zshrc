@@ -16,9 +16,9 @@ ZSH_THEME="random"
 # looking in ~/.oh-my-zsh/themes/
 # An empty array have no effect
 ZSH_THEME_RANDOM_CANDIDATES=( 
-    "minimal"
+    #"minimal"
     "imajes"
-    "sammy"
+    #"sammy"
     #"fishy"
     #"dracula"
     #"macovsky"
@@ -76,8 +76,8 @@ plugins=(
   sublime
   web-search
   extract
-  zsh-autosuggestions
-  zsh-syntax-highlighting
+  #zsh-autosuggestions
+  #zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -234,7 +234,8 @@ alias rb='sudo reboot'
 alias sd='sudo shutdown -h now'
 
 ## git
-alias clone='git clone'
+alias vr='vim README.md'
+alias cl='git clone'
 alias ga='git add'
 alias g='git add .'
 alias gcm='git commit -m'
@@ -244,10 +245,9 @@ alias gp='git pull'
 alias glp='git lfs push origin master'
 
 ## path
-alias mine='cd /Volumes/2Tmac/github/mine'
-alias third='cd /Volumes/2Tmac/github/third'
+alias mine='cd /Volumes/1Tmac/github/mine'
+alias third='cd /Volumes/1Tmac/github/third'
 alias 1t='/Volumes/1Tmac/'
-alias 2t='/Volumes/2Tmac/'
 
 ## editor
 alias jn="jupyter notebook"
@@ -257,7 +257,6 @@ alias vs="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code
 alias ai='adb install'
 alias ffr='fastboot flash recovery'
 alias ad='adb devices'
-alias fd='fastboot devices'
 alias arr='adb reboot recovery'
 alias arb='adb reboot bootloader'
 alias fr='fastboot reboot'
@@ -268,8 +267,7 @@ alias asl='adb sideload'
 #alias vh='vim ~/.hyper.js'
 
 ## leetcode
-alias lc='leetcode'
-alias leetcode='/Volumes/2Tmac/github/mine/LeetCode/'
+alias lc='/Volumes/1Tmac/github/mine/LeetCode/'
 
 ## gitea
 alias tea='/Volumes/1Tmac/Download/gitea-1.7.2-darwin-10.6-amd64'
@@ -279,11 +277,19 @@ alias redis='/Applications/Redis.app/Contents/Resources/Vendor/redis/bin/redis-c
 
 ## brew
 alias bi='brew install'
+alias bcl='brew clean'
 alias bu='brew update ; brew upgrade'
 
 ## jekyll
 alias run='bundle exec jekyll serve'
 alias jr='jekyll server -w --baseurl='
+
+## node
+alias vn='vim ~/.npmrc'
+alias sn='source ~/.npmrc'
+
+## web app
+alias nf='nativefier'
 
 ## tmux
 alias st='source ~/.tmux.conf'
@@ -292,3 +298,38 @@ alias vt='vim ~/.tmux.conf'
 # zsh-autosuggestions
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+## echanced command
+alias shck='shellcheck'
+alias hex='hexyl'
+alias pping='/Volumes/1Tmac/github/third/prettyping/prettyping'
+
+## iina for youtube
+alias iina='/Applications/IINA.app/Contents/MacOS/iina-cli'
+
+## database
+alias mysql='mysql -p -u root'
+
+## weather
+alias w='curl wttr.in'
+
+## feeluown
+export PATH=~/.local/bin:$PATH
+
+## autojump
+alias j='autojump'
+
+# public key 
+# https://learnku.com/articles/5067/how-the-bitcoin-address-is-generated
+#alias pub1='python -m secp256k1 privkey -p'
+#alias pri='openssl ecparam -name secp256k1 -genkey > ~/priv.pem; openssl ec -in ~/priv.pem -outform DER | tail -c +8 | head -c 32 | xxd -p -c 32'
+#alias pub='openssl ecparam -name secp256k1 -genkey > ~/priv.pem; openssl ec -in ~/priv.pem -pubout -outform DER | tail -c 56 | xxd -p -c 56'
+#alias pub='openssl ecparam -name secp256k1 -genkey > ~/priv.pem; openssl ec -in priv.pem -pubout -outform DER | tail -c 65 | xxd -p -c 65'
+
+alias e='exit'
+
+# arc_mac_amd64
+alias arc='/usr/local/bin/arc'
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/m4ch0/.sdkman"
+[[ -s "/Users/m4ch0/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/m4ch0/.sdkman/bin/sdkman-init.sh"
