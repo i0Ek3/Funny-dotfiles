@@ -1,3 +1,4 @@
+" Based chxuan's vimplus
 "   .  . .  .  . .  . S@t.. .  .  . .  .  . .  .  . .  .  . .  .  . .  .  . .  .  . .  .  . .  .  . .  .  . .  .  . .  ..
 "    .     ..t%SXSS%:;t.X8S% .   .      .       .       .       .       .       .       .       .       .       .       .
 "      . %St8;8:X;8:8:8%8;%%:@S:    . .    . .    ....    .  .    .  .    .  .    .  .    .  .    .  .    .  .    .  ....
@@ -107,6 +108,50 @@ if has("gui_running")
     set guicursor=n-v-c:ver5    " 设置光标为竖线
 endif
 
+
+let s:curdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+let &rtp.=','.s:curdir
+
+" Load configs
+for fpath in split(globpath(expand(s:curdir.'/config'), '*.vim'), '\n')
+  exe 'source' fpath
+endfor
+
+" Options setup ============================================================={{{
+
+set termguicolors
+set maxmempattern=5000
+set lazyredraw
+set showmode
+set foldmethod=indent
+set foldlevel=99
+set backspace=indent,eol,start " backspace over everything in insert mode
+" time in milliseconds to wait for a mapped sequence to complete
+set timeoutlen=700
+
+" }}}
+
+" coc.nvim setup ============================================================{{{
+
+" color for cursor holding highlight
+"hi default CocHighlightText guibg=#8a8a8a guifg=#211F1C
+"hi default CocHighlightText ctermbg=#8a8a8a ctermfg=#211F1C
+
+" color for coc-diagnostic
+hi link CocErrorSign Error
+hi link CocWarningSign ALEWarningSign
+
+" }}}
+
+
+" lightline setup ==========================================================={{{
+
+" wombat tabline colorscheme customization
+"let s:palette = g:lightline#colorscheme#wombat#palette
+"let s:palette.tabline.tabsel = [ [ '#242424', '#8ac6f2', 235, 117, 'bold' ] ]
+"unlet s:palette
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件列表
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -119,8 +164,8 @@ Plug 'chxuan/prepare-code'
 Plug 'chxuan/vim-buffer'
 Plug 'chxuan/vimplus-startify'
 Plug 'chxuan/tagbar'
-Plug 'Valloric/YouCompleteMe'
-Plug 'Yggdroot/LeaderF'
+"Plug 'Valloric/YouCompleteMe'
+"Plug 'Yggdroot/LeaderF'
 Plug 'mileszs/ack.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
@@ -152,6 +197,11 @@ Plug 'terryma/vim-smooth-scroll'
 Plug 'rhysd/clever-f.vim'
 Plug 'rhysd/github-complete.vim'
 Plug 'vim-scripts/indentpython.vim'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+
 
 call plug#end()            
 
@@ -188,6 +238,7 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "
 set background=dark
 let g:onedark_termcolors=256
 colorscheme onedark
+"colorscheme monokai
 
 " airline
 let g:airline_theme="onedark"
@@ -253,7 +304,8 @@ let g:ycm_warning_symbol = '✗'
 let g:ycm_seed_identifiers_with_syntax = 1 
 let g:ycm_complete_in_comments = 1 
 let g:ycm_complete_in_strings = 1 
-let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
+"let g:ycm_server_python_interpreter = '/usr/bin/python3'
+let g:ycm_server_python_interpreter = '/usr/local/bin/python3.7'
 let g:ycm_python_binary_path = 'python'
 nnoremap <leader>u :YcmCompleter GoToDeclaration<cr>
 " 已经使用cpp-mode插件提供的转到函数实现的功能
@@ -295,10 +347,9 @@ map g/ <Plug>(incsearch-stay)
 " markdown
 let uname = system('uname -s')
 if uname == "Darwin\n"
-    "let g:mkdp_path_to_chrome = "/Applications/Chromium.app/Contents/MacOS/Chromium"
-    let g:mkdp_path_to_chrome = "/Applications/Vivaldi.app/Contents/MacOS/Vivaldi"
+    let g:mkdp_path_to_chrome = "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome"
 else
-    let g:mkdp_path_to_chrome = '/usr/bin/Chromium %U'
+    let g:mkdp_path_to_chrome = '/usr/bin/google-chrome-stable %U'
 endif
 nmap <silent> <F7> <Plug>MarkdownPreview
 imap <silent> <F7> <Plug>MarkdownPreview
@@ -333,7 +384,7 @@ let g:Lf_WildIgnore = {
 let g:Lf_UseCache = 0
 
 " ack
-nnoremap <leader>F :Ack!<space>
+nnoremap <leader>. :Ack!<space>
 
 " echodoc.vim
 let g:echodoc_enable_at_startup = 1

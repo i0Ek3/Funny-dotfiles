@@ -17,12 +17,12 @@ ZSH_THEME="random"
 # An empty array have no effect
 ZSH_THEME_RANDOM_CANDIDATES=( 
     #"minimal"
-    "imajes"
+    #"imajes"
     #"sammy"
     #"fishy"
     #"dracula"
     #"macovsky"
-    #"robbyrussell" 
+    "robbyrussell" 
     #"agnoster" 
 )
 
@@ -120,7 +120,7 @@ alias sha1='openssl sha1'
 alias cdiff='colordiff' # need install package
 alias mount='mount | column -t'
 alias h='history'
-alias j='jobs -l'
+#alias j='jobs -l'
 alias ping='ping -c 5'
 alias fastping='ping -c 100 -s.2'
 alias ports='netstat -tulanp'
@@ -135,9 +135,17 @@ alias v='vim'
 alias vz='vim ~/.zshrc'
 alias vv='vim ~/.vimrc'
 
+## tmux
+alias st='source ~/.tmux.conf'
+alias vt='vim ~/.tmux.conf'
+
+## node
+alias vn='vim ~/.npmrc'
+alias sn='source ~/.npmrc'
+alias ni='npm install -g'
 
 # go env
-export GOPATH=$HOME/go
+export GOPATH=$HOME/.go
 export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
@@ -225,33 +233,30 @@ export NVM_DIR="$HOME/.nvm"
 ## homebrew
 alias fhb='export HOMEBREW_NO_AUTO_UPDATE=true'
 
-## wudaodict
-alias ws='wd -s'
-alias wo='wd -o'
-
 ## system
-alias rb='sudo reboot'
-alias sd='sudo shutdown -h now'
+alias reboot='sudo reboot'
+alias down='sudo shutdown -h now'
 
 ## git
 alias vr='vim README.md'
 alias cl='git clone'
-alias ga='git add'
-alias g='git add .'
-alias gcm='git commit -m'
-alias gs='git status -s'
-alias gc='git commit -m "Update README.md"'
-alias gp='git pull'
-alias glp='git lfs push origin master'
+alias ga='git add .'
+alias gp='git push -f chaoyu'
+alias gf='git fetch'
+alias gl='git log --oneline'
+alias gd='git diff'
+alias co='checkout'
+alias gb='git branch'
+alias gs='git switch'
+
+# ubuntu touch
+alias utf='$HOME/Library/Caches/ubports/'
+alias ut='sudo /Applications/ubports-installer.app/Contents/MacOS/ubports-installer'
 
 ## path
-alias mine='cd /Volumes/1Tmac/github/mine'
-alias third='cd /Volumes/1Tmac/github/third'
-alias 1t='/Volumes/1Tmac/'
-
-## editor
-alias jn="jupyter notebook"
-alias vs="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
+alias mine='cd /Volumes/2Tmac/github/mine'
+alias third='cd /Volumes/2Tmac/github/third'
+alias 2t='/Volumes/2Tmac/'
 
 ## adb
 alias ai='adb install'
@@ -262,38 +267,21 @@ alias arb='adb reboot bootloader'
 alias fr='fastboot reboot'
 alias asl='adb sideload'
 
-## Unavaiable
-#alias solc='/usr/local/bin/solcjs'
-#alias vh='vim ~/.hyper.js'
-
 ## leetcode
-alias lc='/Volumes/1Tmac/github/mine/LeetCode/'
-
-## gitea
-alias tea='/Volumes/1Tmac/Download/gitea-1.7.2-darwin-10.6-amd64'
+alias lc='/Volumes/2Tmac/github/mine/LeetCode/'
 
 ## redis
 alias redis='/Applications/Redis.app/Contents/Resources/Vendor/redis/bin/redis-cli'
 
 ## brew
 alias bi='brew install'
+alias bci='brew cask install'
 alias bcl='brew clean'
 alias bu='brew update ; brew upgrade'
 
-## jekyll
-alias run='bundle exec jekyll serve'
-alias jr='jekyll server -w --baseurl='
-
-## node
-alias vn='vim ~/.npmrc'
-alias sn='source ~/.npmrc'
 
 ## web app
-alias nf='nativefier'
-
-## tmux
-alias st='source ~/.tmux.conf'
-alias vt='vim ~/.tmux.conf'
+alias nf='nativefier --name'
 
 # zsh-autosuggestions
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -301,7 +289,7 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 ## echanced command
 alias shck='shellcheck'
 alias hex='hexyl'
-alias pping='/Volumes/1Tmac/github/third/prettyping/prettyping'
+alias pping='/Volumes/2Tmac/github/third/prettyping/prettyping'
 
 ## iina for youtube
 alias iina='/Applications/IINA.app/Contents/MacOS/iina-cli'
@@ -310,13 +298,29 @@ alias iina='/Applications/IINA.app/Contents/MacOS/iina-cli'
 alias mysql='mysql -p -u root'
 
 ## weather
-alias w='curl wttr.in'
+alias wttr='curl wttr.in'
 
 ## feeluown
 export PATH=~/.local/bin:$PATH
 
 ## autojump
-alias j='autojump'
+#alias j='autojump'
+[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
+
+#autoload -U compinit && compinit -u
+
+alias demon='$HOME/go/src/xsky-demon'
+
+## docker vimplus
+alias vimplus='docker run -it chxuan/ubuntu-vimplus'
+
+
+## python
+alias py='python3'
+#alias pip='pip3 install'
+
+## port
+alias pi='sudo port install'
 
 # public key 
 # https://learnku.com/articles/5067/how-the-bitcoin-address-is-generated
@@ -331,5 +335,8 @@ alias e='exit'
 alias arc='/usr/local/bin/arc'
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/m4ch0/.sdkman"
-[[ -s "/Users/m4ch0/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/m4ch0/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+

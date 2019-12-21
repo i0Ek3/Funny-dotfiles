@@ -1,45 +1,16 @@
-# Funny-dotfiles
+# dotfiles
+
+> Most of these files based someone who have great job on that.
 
 Make your creative work more efficiency.
 
-**Before you use my dotfiles, please ensure you have already insatlled below content software.**
-
-## Content
-
-* [docker](#docker)
-* [iterm](#iterm)
-* [tmux](#tmux)
-* [zsh](#zsh)
-* [vim](#vim)
-* [hyper](#hyper)
-
-
-### docker
-
-### iTerm
-
-### tmux
+## Installation
 
 ```Shell
-$ cp tmux.local ~/.tmux.local
-$ cp tmux.local.conf ~/.tmux.local.conf
-```    
-
-### zsh
-
-```Shell
-$ cp zshrc ~/.zshrc
-```
-
-### vim
-
-```Shell
-$ cp vimrc ~/.vimrc
-```
-### hyper
-
-```Shel
-$ cp hyper.js ~/.hyper.js
+$ cp tmux.local ~/.tmux.local # for tmux
+$ cp zshrc ~/.zshrc # for zsh
+$ cp vimrc ~/.vimrc # for vim
+$ cp hyper.js ~/.hyper.js # for hyper
 ```
 
 
