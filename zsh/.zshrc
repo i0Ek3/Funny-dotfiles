@@ -8,15 +8,7 @@ export ZSH=$HOME/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="random"
-#ZSH_THEME="powerlevel9k/powerlevel9k
-
-POWERLEVEL9K_MODE="nerdfont-complete"
-# Customise the Powerlevel9k prompts
-#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh dir vcs newline status)
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs status)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=false
-POWERLEVEL9K_STATUS_HIDE_SIGNAME=false
+# ZSH_THEME="eastwood"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -31,7 +23,6 @@ ZSH_THEME_RANDOM_CANDIDATES=(
     #"dracula"
     #"macovsky"
     "robbyrussell" 
-    #"powerlevel9k/powerlevel9k"
     #"agnoster" 
 )
 
@@ -85,8 +76,8 @@ plugins=(
   sublime
   web-search
   extract
-  zsh-autosuggestions
-  zsh-syntax-highlighting
+  #zsh-autosuggestions
+  #zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -250,8 +241,7 @@ alias down='sudo shutdown -h now'
 alias vr='vim README.md'
 alias cl='git clone'
 alias ga='git add .'
-alias gp='git pull'
-alias gcm='git commit -m "Update README.md"'
+alias gp='git push -f chaoyu'
 alias gf='git fetch'
 alias gl='git log --oneline'
 alias gd='git diff'
@@ -311,7 +301,7 @@ alias iina='/Applications/IINA.app/Contents/MacOS/iina-cli'
 alias mysql='mysql -p -u root'
 
 ## weather
-alias weather='curl wttr.in'
+alias wttr='curl wttr.in'
 
 ## feeluown
 export PATH=~/.local/bin:$PATH
@@ -357,69 +347,8 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # cannot open app on catalina
 alias reopen='sudo xattr -d com.apple.quarantine'
-# cannot rm file: read-only system
-alias ros='sudo mount -uw /'
 
-#alias yd='ydict'
-alias o='open'
-alias od='open .'
-alias dl='proxychains4 wget'
-alias pgc='proxychains4 git clone'
-alias dp='docker pull'
-alias ipy='ipython'
-alias pi3='pip3 install'
-alias pi2='pip install'
+
 alias p3='python3'
 alias p2='python2'
-alias pu='pip install --upgrade pip'
 alias mega='/Applications/MEGAcmd.app/Contents/MacOS/MEGAcmdShell'
-alias ic='imgcat'
-alias ubu='docker run -it ubuntu:latest bash'
-alias code='/Volumes/2Tmac/code'
-alias jn='jupyter notebook'
-alias jl='jupyter lab'
-alias face='face_recognition --cpus 4'
-alias pc4='proxychains4'
-alias pbi='proxychains4 brew install'
-alias pci='proxychains4 brew cask install'
-alias pc4='proxychains4'
-alias ff='ffmpeg'
-alias ffcut='ffmpeg -i $src_video_name -ss $where_to_start -t $how_long -acodec copy -vcodec copy $output_name' #example: ffmpeg -ss 00:03:25 -t 00:19:07 -i japan-2.mp4 -vcodec copy -acodec copy j-2.mp4 
-alias ffcvt='ffmpeg -i $src_video_name $output_name' #example: ffmpeg -i japan.wmv japan-2.mp4 
-alias trash='rm -rf $HOME/.Trash/*'
-alias mb='musicbox'
-alias im='instantmusic'
-alias twitter='pc4 rainbowstream'
-alias cute='nyancat'
-
-
-## msf - metasploit
-export PATH="$PATH:/opt/metasploit-framework/bin"
-
-## homebrew china
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-
-#eval $(thefuck --alias)
-
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-export PATH="/usr/local/sbin:$PATH"
-
-# Terminal Proxy Global
-alias sp="export ALL_PROXY=socks5://127.0.0.1:1086"
-alias up="unset ALL_PROXY"
-
-
-export PATH="/usr/local/opt/texinfo/bin:$PATH"
-
-## npm global issue
-NPM_PACKAGES="${HOME}/.npm-packages"
-NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
-PATH="$NPM_PACKAGES/bin:$PATH"
