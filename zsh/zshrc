@@ -152,6 +152,7 @@ alias vt='vim ~/.tmux.conf'
 alias vn='vim ~/.npmrc'
 alias sn='source ~/.npmrc'
 alias ni='npm install -g'
+alias pni='pc4 npm install -g'
 
 # go env
 export GOPATH=$HOME/.go
@@ -291,6 +292,7 @@ alias bi='brew install'
 alias bci='brew cask install'
 alias bcl='brew clean'
 alias bu='brew update ; brew upgrade'
+alias pbu='pc4 brew update ; pc4 brew upgrade'
 
 
 ## web app
@@ -368,9 +370,8 @@ alias pgc='proxychains4 git clone'
 alias dp='docker pull'
 alias ipy='ipython'
 alias pi3='pip3 install'
-alias pi2='pip install'
 alias p3='python3'
-alias p2='python2'
+alias py='python3'
 alias pu='pip install --upgrade pip'
 alias mega='/Applications/MEGAcmd.app/Contents/MacOS/MEGAcmdShell'
 alias ic='imgcat'
@@ -389,8 +390,25 @@ alias ffcvt='ffmpeg -i $src_video_name $output_name' #example: ffmpeg -i japan.w
 alias trash='rm -rf $HOME/.Trash/*'
 alias mb='musicbox'
 alias im='instantmusic'
-alias twitter='pc4 rainbowstream'
 alias cute='nyancat'
+alias atree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g' "
+alias ql='qlmanage -p'
+alias kl='kill -9'
+alias size='du -sh'
+alias p2a='pyinstaller -F' # python 2 app
+alias egg='python3 -m easy_install' # egg ***.egg
+alias ph='pc4 python3 /Volumes/2Tmac/.ph/PrNdOwN/pd.py'
+alias ph1='pc4 phdl'
+alias ph2='pc4 python3 /Volumes/2Tmac/github/third/PornHub-downloader-python/phdler.py'
+alias ph3='pc4 python3 /Volumes/2Tmac/github/third/porndl/porndl.py'
+alias shk='shellcheck'
+alias dt='dict'
+alias ytbd='pc4 youtube-dl'
+alias avir='virtualenv venv; source venv/bin/activate; pip3 install -r requirements.txt; jupyter notebook'
+alias dvir='deactivate'
+alias gri='grep -i'
+alias cs='codesign --force --deep --sign - /Applications/'
+alias tz='terminalizer'
 
 
 ## msf - metasploit
