@@ -154,11 +154,13 @@ alias sn='source ~/.npmrc'
 alias ni='npm install -g'
 alias pni='pc4 npm install -g'
 
+alias wg='wget'
+
 # go env
-export GOPATH=$HOME/.go
-export GOROOT=/usr/local/opt/go/libexec
+#export GOROOT=/usr/local/opt/go/libexec
+export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
+#export PATH=$PATH:$GOROOT/bin
 
 
 ## Github repo create on terminal
@@ -299,7 +301,7 @@ alias pbu='pc4 brew update ; pc4 brew upgrade'
 alias nf='nativefier --name'
 
 # zsh-autosuggestions
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 ## echanced command
 alias shck='shellcheck'
@@ -345,7 +347,7 @@ alias pi='sudo port install'
 #alias pub='openssl ecparam -name secp256k1 -genkey > ~/priv.pem; openssl ec -in priv.pem -pubout -outform DER | tail -c 65 | xxd -p -c 65'
 
 alias e='exit'
-alias rmfile='rm -rf $HOME/Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/ac8875c5f2cfa9594028fc2ebc2cc351/Message/MessageTemp/d63dc6daa7b304479b6af49d8df69fd0/File'
+alias rmf='rm -rf $HOME/Library/Containers/com.tencent.xinWeChat/Data/Library/Application\ Support/com.tencent.xinWeChat/2.0b4.0.9/ac8875c5f2cfa9594028fc2ebc2cc351/Message/MessageTemp/d63dc6daa7b304479b6af49d8df69fd0/File'
 
 
 # arc_mac_amd64
@@ -360,7 +362,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # cannot open app on catalina
 alias reopen='sudo xattr -d com.apple.quarantine'
 # cannot rm file: read-only system
-alias ros='sudo mount -uw /'
+alias remnt='sudo mount -uw /'
 
 #alias yd='ydict'
 alias o='open'
@@ -397,19 +399,24 @@ alias kl='kill -9'
 alias size='du -sh'
 alias p2a='pyinstaller -F' # python 2 app
 alias egg='python3 -m easy_install' # egg ***.egg
-alias ph='pc4 python3 /Volumes/2Tmac/.ph/PrNdOwN/pd.py'
-alias ph1='pc4 phdl'
-alias ph2='pc4 python3 /Volumes/2Tmac/github/third/PornHub-downloader-python/phdler.py'
-alias ph3='pc4 python3 /Volumes/2Tmac/github/third/porndl/porndl.py'
 alias shk='shellcheck'
 alias dt='dict'
 alias ytbd='pc4 youtube-dl'
+alias ytd='youtube-dl -f best'
 alias avir='virtualenv venv; source venv/bin/activate; pip3 install -r requirements.txt; jupyter notebook'
 alias dvir='deactivate'
 alias gri='grep -i'
 alias cs='codesign --force --deep --sign - /Applications/'
 alias tz='terminalizer'
-
+alias is='istats'
+alias nf='nativefier'
+alias ydi='youtube-dl-interactive'
+alias idg='idcardgenerator'
+alias gqs='git-quick-stats'
+alias sl='streamlit'
+alias of='onefetch'
+alias br='broot'
+alias clwc='sudo rm -rf /Users/hyenas/Library/Containers/com.tencent.xinWeChat/Data/Library/Application\ Support/com.tencent.xinWeChat/2.0b4.0.9/ac8875c5f2cfa9594028fc2ebc2cc351/Message/MessageTemp/d63dc6daa7b304479b6af49d8df69fd0/File'
 
 ## msf - metasploit
 export PATH="$PATH:/opt/metasploit-framework/bin"
@@ -424,9 +431,9 @@ export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 #eval $(thefuck --alias)
 
 # pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+#export PYENV_ROOT="$HOME/.pyenv"
+#export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"
 
 export PATH="/usr/local/sbin:$PATH"
 
@@ -434,6 +441,7 @@ export PATH="/usr/local/sbin:$PATH"
 alias sp="export ALL_PROXY=socks5://127.0.0.1:1086"
 alias up="unset ALL_PROXY"
 
+alias tm="tmpmail"
 
 export PATH="/usr/local/opt/texinfo/bin:$PATH"
 
@@ -441,3 +449,6 @@ export PATH="/usr/local/opt/texinfo/bin:$PATH"
 NPM_PACKAGES="${HOME}/.npm-packages"
 NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 PATH="$NPM_PACKAGES/bin:$PATH"
+
+#source /Users/hyenas/Library/Preferences/org.dystroy.broot/launcher/bash/br
+export PATH="/Volumes/2Tmac/github/third/git-fuzzy/bin:$PATH"
