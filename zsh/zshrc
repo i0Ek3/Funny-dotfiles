@@ -141,6 +141,7 @@ alias now='date'
 alias sz='source ~/.zshrc'
 alias sv='source ~/.vimrc'
 alias v='vim'
+alias v3='vim -O3'
 alias vz='vim ~/.zshrc'
 alias vv='vim ~/.vimrc'
 alias todo='vim ~/.todo'
@@ -148,6 +149,26 @@ alias todo='vim ~/.todo'
 ## tmux
 alias st='source ~/.tmux.conf'
 alias vt='vim ~/.tmux.conf'
+
+## tmuxinator
+export EDITOR='vim'
+
+tmux_init()
+{
+    tmux new-session -s "auto" -d -n "auto"
+    tmux split-window -h
+    tmux split-window -h
+    tmux select-layout even-horizontal
+    tmux select-pane -L
+    tmux select-pane -L
+    tmux -2 attach-session -d
+}
+alias ti='tmux_init'
+
+# 判断是否已有开启的tmux会话，没有则开启
+#if which tmux 2>&1 >/dev/null; then
+#    test -z "$TMUX" && (tmux attach || tmux_init)
+#fi
 
 ## node
 alias vn='vim ~/.npmrc'
@@ -258,10 +279,12 @@ alias gp='git pull'
 alias gcm='git commit -m "Update README.md"'
 alias gf='git fetch'
 alias gl='git log --oneline'
+alias glg='git lg'
 alias gd='git diff'
 alias co='checkout'
 alias gb='git branch'
 alias gs='git switch'
+#git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 # sds server
 alias edp='ssh root@10.0.11.75'
@@ -413,12 +436,18 @@ alias sl='streamlit'
 alias of='onefetch'
 alias br='broot'
 
-alias clwc='sudo rm -rf /Users/hyenas/Library/Containers/com.tencent.xinWeChat/Data/Library/Application\ Support/com.tencent.xinWeChat/2.0b4.0.9/ac8875c5f2cfa9594028fc2ebc2cc351/Message/MessageTemp/d63dc6daa7b304479b6af49d8df69fd0/File'
+alias clwc='sudo rm -rf $HOME/Library/Containers/com.tencent.xinWeChat/Data/Library/Application\ Support/com.tencent.xinWeChat/2.0b4.0.9/ac8875c5f2cfa9594028fc2ebc2cc351/Message/MessageTemp/d63dc6daa7b304479b6af49d8df69fd0/File'
 
-alias send='croc send --code x230'
-alias recv='croc x230'
+alias send='croc send --code'
+alias recv='croc'
 
 alias ihb='/usr/bin/ruby -e "$(curl -fsSL https://hellogithub.cn-bj.ufileos.com/file/brew_install.sh)"'
+
+## Go Assembly & SSA
+alias ass='GOOS=linux GOARCH=amd64 go tool compile -S'
+alias genass='go build -gcflags -S'
+alias assnoopt='go tool compile -S -N -l'
+alias genssa='GOSSAFUNC=main go build main.go'
 
 ## msf - metasploit
 export PATH="$PATH:/opt/metasploit-framework/bin"
@@ -452,19 +481,19 @@ NPM_PACKAGES="${HOME}/.npm-packages"
 NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 PATH="$NPM_PACKAGES/bin:$PATH"
 
-#source /Users/hyenas/Library/Preferences/org.dystroy.broot/launcher/bash/br
+#source $HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br
 export PATH="/Volumes/2Tmac/github/third/git-fuzzy/bin:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/hyenas/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('$HOME/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/hyenas/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/hyenas/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/hyenas/anaconda3/bin:$PATH"
+        export PATH="$HOME/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
