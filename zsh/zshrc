@@ -165,18 +165,40 @@ tmux_init()
 }
 alias ti='tmux_init'
 
-# 判断是否已有开启的tmux会话，没有则开启
-#if which tmux 2>&1 >/dev/null; then
-#    test -z "$TMUX" && (tmux attach || tmux_init)
-#fi
+## Go alias
+alias report='sudo goreportcard'
 
 ## node
 alias vn='vim ~/.npmrc'
 alias sn='source ~/.npmrc'
 alias ni='npm install -g'
 alias pni='pc4 npm install -g'
-
+alias ne='node /Volumes/2Tmac/github/third/UnblockNeteaseMusic/app.js -p 80:443 -f 223.252.199.66'
+alias nm='node /Volumes/2Tmac/github/third/NeteaseCloudMusicApi/app.js'
+alias drome='navidrome'
 alias wg='wget'
+alias hs='httpstat'
+alias stress='~/.stress.bash'
+alias vtest='vim $HOME/test/test.go'
+
+#scc
+#cloc
+#glow
+
+# stress for go package
+stressit ()
+{
+    go test -c
+    # comment above and uncomment below to enable the race builder
+    # go test -c -race
+    
+    PKG=$(basename $(pwd))
+
+    while true ; do
+        export GOMAXPROCS=$[ 1 + $[ RANDOM % 128 ]]
+        ./$PKG.test $@ 2>&1
+    done
+}
 
 # go env
 #export GOROOT=/usr/local/opt/go/libexec
@@ -184,47 +206,22 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 #export PATH=$PATH:$GOROOT/bin
 
-
-## Github repo create on terminal
-grc() 
+# proxy
+proxy ()
 {
-  repo_name=$1
- 
-  dir_name=`basename $(pwd)`
- 
-  if [ "$repo_name" = "" ]; then
-    echo "Repo name (hit enter to use '$dir_name')?"
-    read repo_name
-  fi
- 
-  if [ "$repo_name" = "" ]; then
-    repo_name=$dir_name
-  fi
- 
-  username=`git config github.user`
-  if [ "$username" = "" ]; then
-    echo "Could not find username, run 'git config --global github.user <username>'"
-    invalid_credentials=1
-  fi
- 
-  token=`git config github.token`
-  if [ "$token" = "" ]; then
-    echo "Could not find token, run 'git config --global github.token <token>'"
-    invalid_credentials=1
-  fi
- 
-  if [ "$invalid_credentials" == "1" ]; then
-    return 1
-  fi
- 
-  echo -n "Creating Github repository '$repo_name' ..."
-  curl -u "$username:$token" https://api.github.com/user/repos -d '{"name":"'$repo_name'"}' > /dev/null 2>&1
-  echo " done."
- 
-  echo -n "Pushing local code to remote ..."
-  git remote add origin git@github.com:$username/$repo_name.git > /dev/null 2>&1
-  git push -u origin master > /dev/null 2>&1
-  echo " done."
+    export http_proxy="http://127.0.0.1:8118";
+    export no_proxy="localhost,127.0.0.0/0,192.168.0.0/16,10.0.0.0/0,kubernetes.docker.internal";
+    export NO_PROXY=$no_proxy;
+    export HTTP_PROXY=$http_proxy https_proxy=$http_proxy HTTPS_PROXY=$http_proxy NO_PROXY=$no_proxy;
+    echo "HTTP Proxy on";
+    env | grep --color=auto -i proxy
+}
+
+noproxy ()
+{
+    unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY no_proxy NO_PROXY FTP_PROXY ftp_proxy ALL_PROXY all_proxy;
+    env | grep --color=auto -i proxy;
+    echo -e "Proxy environment variable removed."
 }
 
 
@@ -277,14 +274,30 @@ alias cl='git clone'
 alias ga='git add .'
 alias gp='git pull'
 alias gcm='git commit -m "Update README.md"'
+alias co='git commit -m'
 alias gf='git fetch'
 alias gl='git log --oneline'
 alias glg='git lg'
 alias gd='git diff'
-alias co='checkout'
+alias gck='git checkout'
 alias gb='git branch'
 alias gs='git switch'
+
+# git commit checker
+alias first='git first'
+alias next='git next'
+alias prev='git prev'
+alias last='git last'
+
 #git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias bfg='java -jar /usr/local/bin/bfg-1.13.0.jar'
+
+## for go cmd
+alias bench='go test -bench=.'
+alias gtest='go test -v'
+
+## exa
+alias ec='exa -abghHli'
 
 # sds server
 alias edp='ssh root@10.0.11.75'
@@ -306,6 +319,8 @@ alias arr='adb reboot recovery'
 alias arb='adb reboot bootloader'
 alias fr='fastboot reboot'
 alias asl='adb sideload'
+alias ap='adb push'
+alias pull='adb pull'
 
 ## leetcode
 alias lc='/Volumes/2Tmac/github/mine/LeetCode/'
@@ -315,11 +330,20 @@ alias redis='/Applications/Redis.app/Contents/Resources/Vendor/redis/bin/redis-c
 
 ## brew
 alias bi='brew install'
-alias bci='brew cask install'
+alias bun='brew uninstall'
+alias buc='brew uninstall --cask'
+alias bic='brew install --cask'
 alias bcl='brew clean'
 alias bu='brew update ; brew upgrade'
 alias pbu='pc4 brew update ; pc4 brew upgrade'
 
+## cargo for rust
+alias ci='cargo install'
+
+## Q# for quantum programing
+alias act='conda activate'
+alias aqs='conda activate qsharp-env'
+alias dea='conda deactivate'
 
 ## web app
 alias nf='nativefier --name'
@@ -336,7 +360,7 @@ alias pping='/Volumes/2Tmac/github/third/prettyping/prettyping'
 alias iina='/Applications/IINA.app/Contents/MacOS/iina-cli'
 
 ## database
-alias mysql='mysql -p -u root'
+alias mys='mysql -p -u root'
 
 ## weather
 alias weather='curl wttr.in'
@@ -357,6 +381,9 @@ alias vimplus='docker run -it chxuan/ubuntu-vimplus'
 
 ## port
 alias pi='sudo port install'
+
+# mac softwareupdate
+alias macupdate='softwareupdate --all --install --force'
 
 # public key 
 # https://learnku.com/articles/5067/how-the-bitcoin-address-is-generated
@@ -390,10 +417,13 @@ alias dl='proxychains4 wget'
 alias pgc='proxychains4 git clone'
 alias dp='docker pull'
 alias ipy='ipython'
-alias pi3='pip3 install'
-alias p3='python3'
+alias pi3='sudo pip3 install'
+alias p3='/usr/bin/python3'
 alias p2='python2'
 alias pu='pip3 install --upgrade pip'
+alias pr='sudo pip3 install -r requirements.txt'
+alias pe='pipenv'
+alias ve='virtualenv'
 alias mega='/Applications/MEGAcmd.app/Contents/MacOS/MEGAcmdShell'
 alias ic='imgcat'
 alias ubu='docker run -it ubuntu:latest bash'
@@ -403,7 +433,8 @@ alias jl='jupyter lab'
 alias face='face_recognition --cpus 4'
 alias pc4='proxychains4'
 alias pbi='proxychains4 brew install'
-alias pci='proxychains4 brew cask install'
+alias pbu='proxychains4 brew uninstall'
+alias pci='proxychains4 brew install --cask'
 alias pc4='proxychains4'
 alias ff='ffmpeg'
 alias ffcut='ffmpeg -i $src_video_name -ss $where_to_start -t $how_long -acodec copy -vcodec copy $output_name' #example: ffmpeg -ss 00:03:25 -t 00:19:07 -i japan-2.mp4 -vcodec copy -acodec copy j-2.mp4 
@@ -438,8 +469,8 @@ alias br='broot'
 
 alias clwc='sudo rm -rf $HOME/Library/Containers/com.tencent.xinWeChat/Data/Library/Application\ Support/com.tencent.xinWeChat/2.0b4.0.9/ac8875c5f2cfa9594028fc2ebc2cc351/Message/MessageTemp/d63dc6daa7b304479b6af49d8df69fd0/File'
 
-alias send='croc send --code'
-alias recv='croc'
+alias send='croc send --code x230'
+alias recv='croc x230'
 
 alias ihb='/usr/bin/ruby -e "$(curl -fsSL https://hellogithub.cn-bj.ufileos.com/file/brew_install.sh)"'
 
@@ -480,6 +511,7 @@ export PATH="/usr/local/opt/texinfo/bin:$PATH"
 NPM_PACKAGES="${HOME}/.npm-packages"
 NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 PATH="$NPM_PACKAGES/bin:$PATH"
+export PATH="$(yarn global bin):$PATH"
 
 #source $HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br
 export PATH="/Volumes/2Tmac/github/third/git-fuzzy/bin:$PATH"
@@ -499,3 +531,8 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/bitcomplete bit
+
+# starship for any shell
+# eval "$(starship init zsh)"
