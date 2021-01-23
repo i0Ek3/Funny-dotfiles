@@ -344,6 +344,7 @@ alias ci='cargo install'
 alias act='conda activate'
 alias aqs='conda activate qsharp-env'
 alias dea='conda deactivate'
+alias cdi='conda install -c conda-forge jupyterlab notebook voila'
 
 ## web app
 alias nf='nativefier --name'
@@ -421,7 +422,8 @@ alias pi3='sudo pip3 install'
 alias p3='/usr/bin/python3'
 alias p2='python2'
 alias pu='pip3 install --upgrade pip'
-alias pr='sudo pip3 install -r requirements.txt'
+alias pr='sudo -H pip3 install -r requirements.txt'
+alias cs='pycodestyle'
 alias pe='pipenv'
 alias ve='virtualenv'
 alias mega='/Applications/MEGAcmd.app/Contents/MacOS/MEGAcmdShell'
@@ -429,7 +431,7 @@ alias ic='imgcat'
 alias ubu='docker run -it ubuntu:latest bash'
 alias code='/Volumes/2Tmac/code'
 alias jn='jupyter notebook'
-alias jl='jupyter lab'
+alias jl='jupyter-lab'
 alias face='face_recognition --cpus 4'
 alias pc4='proxychains4'
 alias pbi='proxychains4 brew install'
@@ -536,3 +538,4 @@ complete -o nospace -C /usr/local/bin/bitcomplete bit
 
 # starship for any shell
 # eval "$(starship init zsh)"
+export PATH="/usr/local/opt/ruby/bin:$PATH"

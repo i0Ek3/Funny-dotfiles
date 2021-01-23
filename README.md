@@ -55,6 +55,8 @@ Make your creative work more efficiency.
 │   ├── Wryan.itermcolors
 │   ├── idea.itermcolors
 │   └── material-design-colors.itermcolors
+├── pip
+│   └── pip.conf
 ├── ssh
 │   └── sshd_config
 ├── tmux
