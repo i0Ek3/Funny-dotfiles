@@ -4,6 +4,10 @@
 
 Make your creative work more efficiency.
 
+## Install
+
+Run command on terminal: `./install.sh`, this step just install vimrc/zshrc/tmux.conf/pip.conf on your PC, others require you to install them manually.
+
 ## Content
 
 ```Shell
@@ -67,5 +71,7 @@ Make your creative work more efficiency.
     ├── theme
     └── zshrc
 ```
+
+## ps
 
 Just enjoy it~

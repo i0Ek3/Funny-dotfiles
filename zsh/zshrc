@@ -153,7 +153,8 @@ alias vt='vim ~/.tmux.conf'
 ## tmuxinator
 export EDITOR='vim'
 
-tmux_init()
+## split terminal by tmux
+tmux_init3()
 {
     tmux new-session -s "auto" -d -n "auto"
     tmux split-window -h
@@ -163,7 +164,9 @@ tmux_init()
     tmux select-pane -L
     tmux -2 attach-session -d
 }
-alias ti='tmux_init'
+
+alias t3='tmux_init3'
+#alias t2='tmux_init2'
 
 ## Go alias
 alias report='sudo goreportcard'
@@ -181,9 +184,12 @@ alias hs='httpstat'
 alias stress='~/.stress.bash'
 alias vtest='vim $HOME/test/test.go'
 
+# for code statistic
 #scc
 #cloc
-#glow
+
+# markdown on the terminal
+alias glw='glow'
 
 # stress for go package
 stressit ()
@@ -224,7 +230,6 @@ noproxy ()
     echo -e "Proxy environment variable removed."
 }
 
-
 ## Simplize extract command
 ex ()
 {
@@ -248,7 +253,6 @@ ex ()
   fi
 }
 
-
 ## Create folder then cd in it
 function mkdircd(){
     mkdir -p "$@" && eval cd "\"\$$#\"";
@@ -260,13 +264,15 @@ alias mkcd='foo(){ mkdir -p "$1"; cd "$1" }; foo '
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
-
 ## homebrew
 alias fhb='export HOMEBREW_NO_AUTO_UPDATE=true'
 
 ## system
 alias reboot='sudo reboot'
 alias down='sudo shutdown -h now'
+
+## for lua
+alias li='luarocks install'
 
 ## git
 alias vr='vim README.md'
@@ -282,6 +288,7 @@ alias gd='git diff'
 alias gck='git checkout'
 alias gb='git branch'
 alias gs='git switch'
+alias gss='git status -s'
 
 # git commit checker
 alias first='git first'
@@ -305,6 +312,9 @@ alias edp='ssh root@10.0.11.75'
 # ubuntu touch
 alias utf='$HOME/Library/Caches/ubports/'
 alias ut='sudo /Applications/ubports-installer.app/Contents/MacOS/ubports-installer'
+
+# UTM for ios
+alias utm='ios-deploy --justlaunch --noinstall --bundle ~/Desktop/Payload/UTM.app'
 
 ## path
 alias mine='cd /Volumes/2Tmac/github/mine'
@@ -373,8 +383,6 @@ export PATH=~/.local/bin:$PATH
 #alias j='autojump'
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
-#autoload -U compinit && compinit -u
-
 alias demon='$HOME/go/src/xsky-demon'
 
 ## docker vimplus
@@ -395,7 +403,6 @@ alias macupdate='softwareupdate --all --install --force'
 
 alias e='exit'
 alias rmf='rm -rf $HOME/Library/Containers/com.tencent.xinWeChat/Data/Library/Application\ Support/com.tencent.xinWeChat/2.0b4.0.9/ac8875c5f2cfa9594028fc2ebc2cc351/Message/MessageTemp/d63dc6daa7b304479b6af49d8df69fd0/File'
-
 
 # arc_mac_amd64
 alias arc='/usr/local/bin/arc'
@@ -452,7 +459,7 @@ alias size='du -sh'
 alias p2a='pyinstaller -F' # python 2 app
 alias egg='python3 -m easy_install' # egg ***.egg
 alias shk='shellcheck'
-alias dt='ydict'
+#alias dt='ydict'
 alias ytbd='pc4 youtube-dl'
 alias ytd='youtube-dl -f best'
 alias avir='virtualenv venv; source venv/bin/activate; pip3 install -r requirements.txt; jupyter notebook'
@@ -475,6 +482,16 @@ alias send='croc send --code x230'
 alias recv='croc x230'
 
 alias ihb='/usr/bin/ruby -e "$(curl -fsSL https://hellogithub.cn-bj.ufileos.com/file/brew_install.sh)"'
+
+## for ios device
+## https://www.tracenote.com/2017/08/16/appInstallRealDevice/
+alias ii='ideviceinstaller'
+alias iii='ideviceinstaller -i'
+alias idev='idevice_id -l'
+alias iu='ideviceinstaller -U'
+alias ilog='idevicesyslog'
+alias icut='idevicescreenshot'
+alias idi='ideviceinfo'
 
 ## Go Assembly & SSA
 alias ass='GOOS=linux GOARCH=amd64 go tool compile -S'
