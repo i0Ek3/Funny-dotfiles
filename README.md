@@ -72,6 +72,9 @@ Run command on terminal: `./install.sh`, this step just install vimrc/zshrc/tmux
     └── zshrc
 ```
 
-## ps
+> ps: Just enjoy it~
 
-Just enjoy it~
+## Credit
+
+- @chxuan/vimplus cause of vimbak modified from vimplus
+- All you guys
