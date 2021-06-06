@@ -79,7 +79,6 @@ HIST_STAMPS="yyyy-mm-dd"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  brew
   osx
   autojump
   sublime
@@ -150,9 +149,6 @@ alias todo='vim ~/.todo'
 alias st='source ~/.tmux.conf'
 alias vt='vim ~/.tmux.conf'
 
-## tmuxinator
-export EDITOR='vim'
-
 ## split terminal by tmux
 tmux_init3()
 {
@@ -216,13 +212,8 @@ alias vn='vim ~/.npmrc'
 alias sn='source ~/.npmrc'
 alias ni='npm install -g'
 alias pni='pc4 npm install -g'
-alias ne='node /Volumes/2Tmac/github/third/UnblockNeteaseMusic/app.js -p 80:443 -f 223.252.199.66'
-alias nm='node /Volumes/2Tmac/github/third/NeteaseCloudMusicApi/app.js'
-alias drome='navidrome'
 alias wg='wget'
 alias hs='httpstat'
-alias stress='~/.stress.bash'
-alias vtest='vim $HOME/test/test.go'
 
 # for code statistic
 #scc
@@ -247,10 +238,7 @@ stressit ()
 }
 
 # go env
-#export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-#export PATH=$PATH:$GOROOT/bin
 
 # proxy
 proxy ()
@@ -304,9 +292,6 @@ alias mkcd='foo(){ mkdir -p "$1"; cd "$1" }; foo '
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
-## homebrew
-alias fhb='export HOMEBREW_NO_AUTO_UPDATE=true'
-
 ## system
 alias reboot='sudo reboot'
 alias down='sudo shutdown -h now'
@@ -330,14 +315,7 @@ alias gb='git branch'
 alias gs='git switch'
 alias gss='git status -s'
 
-# git commit checker
-alias first='git first'
-alias next='git next'
-alias prev='git prev'
-alias last='git last'
-
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias bfg='java -jar /usr/local/bin/bfg-1.13.0.jar'
 
 ## for go cmd
 alias bench='go test -bench=.'
@@ -345,21 +323,6 @@ alias gtest='go test -v'
 
 ## exa
 alias ec='exa -abghHli'
-
-# sds server
-alias edp='ssh root@10.0.11.75'
-
-# ubuntu touch
-alias utf='$HOME/Library/Caches/ubports/'
-alias ut='sudo /Applications/ubports-installer.app/Contents/MacOS/ubports-installer'
-
-# UTM for ios
-alias utm='ios-deploy --justlaunch --noinstall --bundle ~/Desktop/Payload/UTM.app'
-
-## path
-alias mine='cd /Volumes/2Tmac/github/mine'
-alias third='cd /Volumes/2Tmac/github/third'
-alias 2t='/Volumes/2Tmac/'
 
 ## adb
 alias ai='adb install'
@@ -371,21 +334,6 @@ alias fr='fastboot reboot'
 alias asl='adb sideload'
 alias ap='adb push'
 alias pull='adb pull'
-
-## leetcode
-alias lc='/Volumes/2Tmac/github/mine/LeetCode/'
-
-## redis
-alias redis='/Applications/Redis.app/Contents/Resources/Vendor/redis/bin/redis-cli'
-
-## brew
-alias bi='brew install'
-alias bun='brew uninstall'
-alias buc='brew uninstall --cask'
-alias bic='brew install --cask'
-alias bcl='brew clean'
-alias bu='brew update ; brew upgrade'
-alias pbu='pc4 brew update ; pc4 brew upgrade'
 
 ## cargo for rust
 alias ci='cargo install'
@@ -399,16 +347,9 @@ alias cdi='conda install -c conda-forge jupyterlab notebook voila'
 ## web app
 alias nf='nativefier --name'
 
-# zsh-autosuggestions
-#source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 ## echanced command
 alias shck='shellcheck'
 alias hex='hexyl'
-alias pping='/Volumes/2Tmac/github/third/prettyping/prettyping'
-
-## iina for youtube
-alias iina='/Applications/IINA.app/Contents/MacOS/iina-cli'
 
 ## database
 alias mys='mysql -p -u root'
@@ -423,29 +364,10 @@ export PATH=~/.local/bin:$PATH
 #alias j='autojump'
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
-alias demon='$HOME/go/src/xsky-demon'
-
 ## docker vimplus
 alias vimplus='docker run -it chxuan/ubuntu-vimplus'
 
-## port
-alias pi='sudo port install'
-
-# mac softwareupdate
-alias macupdate='softwareupdate --all --install --force'
-
-# public key 
-# https://learnku.com/articles/5067/how-the-bitcoin-address-is-generated
-#alias pub1='python -m secp256k1 privkey -p'
-#alias pri='openssl ecparam -name secp256k1 -genkey > ~/priv.pem; openssl ec -in ~/priv.pem -outform DER | tail -c +8 | head -c 32 | xxd -p -c 32'
-#alias pub='openssl ecparam -name secp256k1 -genkey > ~/priv.pem; openssl ec -in ~/priv.pem -pubout -outform DER | tail -c 56 | xxd -p -c 56'
-#alias pub='openssl ecparam -name secp256k1 -genkey > ~/priv.pem; openssl ec -in priv.pem -pubout -outform DER | tail -c 65 | xxd -p -c 65'
-
 alias e='exit'
-alias rmf='rm -rf $HOME/Library/Containers/com.tencent.xinWeChat/Data/Library/Application\ Support/com.tencent.xinWeChat/2.0b4.0.9/ac8875c5f2cfa9594028fc2ebc2cc351/Message/MessageTemp/d63dc6daa7b304479b6af49d8df69fd0/File'
-
-# arc_mac_amd64
-alias arc='/usr/local/bin/arc'
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
@@ -453,14 +375,9 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# cannot open app on catalina
-alias reopen='sudo xattr -d com.apple.quarantine'
-# cannot rm file: read-only system
-alias remnt='sudo mount -uw /'
-
-#alias yd='ydict'
 alias o='open'
 alias od='open .'
+alias pc4='proxychains4'
 alias dl='proxychains4 wget'
 alias pgc='proxychains4 git clone'
 alias dp='docker pull'
@@ -473,25 +390,16 @@ alias pr='sudo -H pip3 install -r requirements.txt'
 alias cs='pycodestyle'
 alias pe='pipenv'
 alias ve='virtualenv'
-alias mega='/Applications/MEGAcmd.app/Contents/MacOS/MEGAcmdShell'
 alias ic='imgcat'
 alias ubu='docker run -it ubuntu:latest bash'
-alias code='/Volumes/2Tmac/code'
 alias jn='jupyter notebook'
 alias jl='jupyter-lab'
-alias face='face_recognition --cpus 4'
-alias pc4='proxychains4'
-alias pbi='proxychains4 brew install'
-alias pbu='proxychains4 brew uninstall'
-alias pci='proxychains4 brew install --cask'
-alias pc4='proxychains4'
 alias ff='ffmpeg'
 alias ffcut='ffmpeg -i $src_video_name -ss $where_to_start -t $how_long -acodec copy -vcodec copy $output_name' #example: ffmpeg -ss 00:03:25 -t 00:19:07 -i japan-2.mp4 -vcodec copy -acodec copy j-2.mp4 
 alias ffcvt='ffmpeg -i $src_video_name $output_name' #example: ffmpeg -i japan.wmv japan-2.mp4 
 alias trash='rm -rf $HOME/.Trash/*'
 alias mb='musicbox'
 alias im='instantmusic'
-alias cute='nyancat'
 alias atree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g' "
 alias ql='qlmanage -p'
 alias kl='kill -9'
@@ -499,13 +407,11 @@ alias size='du -sh'
 alias p2a='pyinstaller -F' # python 2 app
 alias egg='python3 -m easy_install' # egg ***.egg
 alias shk='shellcheck'
-#alias dt='ydict'
 alias ytbd='pc4 youtube-dl'
 alias ytd='youtube-dl -f best'
 alias avir='virtualenv venv; source venv/bin/activate; pip3 install -r requirements.txt; jupyter notebook'
 alias dvir='deactivate'
 alias gri='grep -i'
-alias cs='codesign --force --deep --sign - /Applications/'
 alias tz='terminalizer'
 alias is='istats'
 alias nf='nativefier'
@@ -516,40 +422,14 @@ alias sl='streamlit'
 alias of='onefetch'
 alias br='broot'
 
-alias clwc='sudo rm -rf $HOME/Library/Containers/com.tencent.xinWeChat/Data/Library/Application\ Support/com.tencent.xinWeChat/2.0b4.0.9/ac8875c5f2cfa9594028fc2ebc2cc351/Message/MessageTemp/d63dc6daa7b304479b6af49d8df69fd0/File'
-
 alias send='croc send --code x230'
 alias recv='croc x230'
-
-alias ihb='/usr/bin/ruby -e "$(curl -fsSL https://hellogithub.cn-bj.ufileos.com/file/brew_install.sh)"'
-
-## for ios device
-## https://www.tracenote.com/2017/08/16/appInstallRealDevice/
-alias ii='ideviceinstaller'
-alias iii='ideviceinstaller -i'
-alias idev='idevice_id -l'
-alias iu='ideviceinstaller -U'
-alias ilog='idevicesyslog'
-alias icut='idevicescreenshot'
-alias idi='ideviceinfo'
 
 ## Go Assembly & SSA
 alias ass='GOOS=linux GOARCH=amd64 go tool compile -S'
 alias genass='go build -gcflags -S'
 alias assnoopt='go tool compile -S -N -l'
 alias genssa='GOSSAFUNC=main go build main.go'
-
-## msf - metasploit
-export PATH="$PATH:/opt/metasploit-framework/bin"
-
-## homebrew china
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-
-#eval $(thefuck --alias)
 
 # pyenv
 #export PYENV_ROOT="$HOME/.pyenv"
@@ -572,19 +452,16 @@ NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 PATH="$NPM_PACKAGES/bin:$PATH"
 export PATH="$(yarn global bin):$PATH"
 
-#source $HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br
-export PATH="/Volumes/2Tmac/github/third/git-fuzzy/bin:$PATH"
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/hyenas/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('$HOME/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/hyenas/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/hyenas/opt/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "$HOME/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/opt/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/hyenas/opt/anaconda3/bin:$PATH"
+        export PATH="$HOME/opt/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -596,10 +473,6 @@ complete -o nospace -C /usr/local/bin/bitcomplete bit
 # starship for any shell
 # eval "$(starship init zsh)"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
-
-# fnm
-export PATH=/Users/hyenas/.fnm:$PATH
-eval "`fnm env`"
 
 # rust cargo env
 export PATH=$PATH:~/.cargo/bin/
