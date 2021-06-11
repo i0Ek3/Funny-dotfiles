@@ -168,46 +168,6 @@ tmux_init3()
 alias t3='tmux_init3'
 #alias t2='tmux_init2'
 
-## follows content refed by https://mhoffman.github.io/2015/05/21/how-to-navigate-directories-with-the-shell.html
-## -------------------------------
-## cd & bd
-function cd() {
-  if [ "$#" = "0" ]
-  then
-  pushd ${HOME} > /dev/null
-  elif [ -f "${1}" ]
-  then
-    ${EDITOR} ${1}
-  else
-  pushd "$1" > /dev/null
-  fi
-}
-
-function bd(){
-  if [ "$#" = "0" ]
-  then
-    popd > /dev/null
-  else
-    for i in $(seq ${1})
-    do
-      popd > /dev/null
-    done
-  fi
-}
-
-## lf = latest file
-alias lln="ls -lhtr  --time-style long-iso | tac | cat -n | tac | sed -s 's/^\s*\([0-9]*\)\s*\(.*\)/[\1]  \2 [\1]/'g && pwd"
-function lf() {
-    if [ "x${1}" == "x" ]
-    then
-        n=1 
-    else
-        n="${1}"
-    fi  
-    ls -rt1 | tail -n ${n} | head -n 1
-}
-## -------------------------------
-
 ## Go alias
 alias report='sudo goreportcard'
 
@@ -327,22 +287,41 @@ alias gb='git branch'
 alias gs='git switch'
 alias gss='git status -s'
 
+function delDS_Store()
+{
+    name='.DS_Store'
+    if [ -f "$name" ]
+    then
+        rm $name
+    fi
+}
+
 function lshow()
 {
-    echo -e "\033[34m================================================================\033[0m"
-    echo "      \033[34mIf this directory is git one, please git pull first.\033[0m"
-    echo -e "\033[34m================================================================\033[0m"
-    echo ""
+    dir='./.git'
+    if [ -d "$dir" ]
+    then
+        echo -e "\033[34m==============================================================================\033[0m"
+        echo "      \033[34mThis directory contains .git, please git pull first before ggpush.\033[0m"
+        echo -e "\033[34m==============================================================================\033[0m"
+        echo ""
 
-    ls -alh
-    
-    echo ""
-    echo -e "\033[34m================================================================\033[0m"
-    echo "      \033[34mIf this directory is git one, please git pull first.\033[0m"
-    echo -e "\033[34m================================================================\033[0m"
+        ls -alh
+        delDS_Store
+        
+        echo ""
+        echo -e "\033[34m==============================================================================\033[0m"
+        echo "      \033[34mThis directory contains .git, please git pull first before ggpush.\033[0m"
+        echo -e "\033[34m==============================================================================\033[0m"
+    else
+        ls -alh
+        delDS_Store
+    fi
+
 }
 
 alias ll='foo(){ lshow }; foo '
+alias l='ls -lh'
 
 # git commit checker
 alias first='git first'
@@ -351,7 +330,6 @@ alias prev='git prev'
 alias last='git last'
 
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias bfg='java -jar /usr/local/bin/bfg-1.13.0.jar'
 
 ## for go cmd
 alias bench='go test -bench=.'
@@ -359,16 +337,6 @@ alias gtest='go test -v'
 
 ## exa
 alias ec='exa -abghHli'
-
-# sds server
-alias edp='ssh root@10.0.11.75'
-
-# ubuntu touch
-alias utf='$HOME/Library/Caches/ubports/'
-alias ut='sudo /Applications/ubports-installer.app/Contents/MacOS/ubports-installer'
-
-# UTM for ios
-alias utm='ios-deploy --justlaunch --noinstall --bundle ~/Desktop/Payload/UTM.app'
 
 ## path
 alias mine='cd /Volumes/2Tmac/github/mine'
@@ -413,9 +381,6 @@ alias cdi='conda install -c conda-forge jupyterlab notebook voila'
 ## web app
 alias nf='nativefier --name'
 
-# zsh-autosuggestions
-#source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 ## echanced command
 alias shck='shellcheck'
 alias hex='hexyl'
@@ -448,18 +413,8 @@ alias pi='sudo port install'
 # mac softwareupdate
 alias macupdate='softwareupdate --all --install --force'
 
-# public key 
-# https://learnku.com/articles/5067/how-the-bitcoin-address-is-generated
-#alias pub1='python -m secp256k1 privkey -p'
-#alias pri='openssl ecparam -name secp256k1 -genkey > ~/priv.pem; openssl ec -in ~/priv.pem -outform DER | tail -c +8 | head -c 32 | xxd -p -c 32'
-#alias pub='openssl ecparam -name secp256k1 -genkey > ~/priv.pem; openssl ec -in ~/priv.pem -pubout -outform DER | tail -c 56 | xxd -p -c 56'
-#alias pub='openssl ecparam -name secp256k1 -genkey > ~/priv.pem; openssl ec -in priv.pem -pubout -outform DER | tail -c 65 | xxd -p -c 65'
-
 alias e='exit'
 alias rmf='rm -rf $HOME/Library/Containers/com.tencent.xinWeChat/Data/Library/Application\ Support/com.tencent.xinWeChat/2.0b4.0.9/ac8875c5f2cfa9594028fc2ebc2cc351/Message/MessageTemp/d63dc6daa7b304479b6af49d8df69fd0/File'
-
-# arc_mac_amd64
-alias arc='/usr/local/bin/arc'
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
@@ -472,7 +427,6 @@ alias reopen='sudo xattr -d com.apple.quarantine'
 # cannot rm file: read-only system
 alias remnt='sudo mount -uw /'
 
-#alias yd='ydict'
 alias o='open'
 alias od='open .'
 alias dl='proxychains4 wget'
@@ -513,7 +467,6 @@ alias size='du -sh'
 alias p2a='pyinstaller -F' # python 2 app
 alias egg='python3 -m easy_install' # egg ***.egg
 alias shk='shellcheck'
-#alias dt='ydict'
 alias ytbd='pc4 youtube-dl'
 alias ytd='youtube-dl -f best'
 alias avir='virtualenv venv; source venv/bin/activate; pip3 install -r requirements.txt; jupyter notebook'
@@ -532,10 +485,9 @@ alias br='broot'
 
 alias clwc='sudo rm -rf $HOME/Library/Containers/com.tencent.xinWeChat/Data/Library/Application\ Support/com.tencent.xinWeChat/2.0b4.0.9/ac8875c5f2cfa9594028fc2ebc2cc351/Message/MessageTemp/d63dc6daa7b304479b6af49d8df69fd0/File'
 
+# croc
 alias send='croc send --code x230'
 alias recv='croc x230'
-
-alias ihb='/usr/bin/ruby -e "$(curl -fsSL https://hellogithub.cn-bj.ufileos.com/file/brew_install.sh)"'
 
 ## for ios device
 ## https://www.tracenote.com/2017/08/16/appInstallRealDevice/
@@ -610,10 +562,6 @@ complete -o nospace -C /usr/local/bin/bitcomplete bit
 # starship for any shell
 # eval "$(starship init zsh)"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
-
-# fnm
-#export PATH=/Users/hyenas/.fnm:$PATH
-#eval "`fnm env`"
 
 # rust cargo env
 export PATH=$PATH:~/.cargo/bin/
