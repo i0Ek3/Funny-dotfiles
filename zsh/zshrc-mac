@@ -122,8 +122,9 @@ source $ZSH/oh-my-zsh.sh
 
 
 ##################################################
-## alias for commands
+## alias for common commands
 
+# common ones
 alias c='clear'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -141,9 +142,24 @@ alias now='date'
 alias e='exit'
 alias o='open'
 alias od='open .'
-alias dl='proxychains4 wget'
-alias pgc='proxychains4 git clone'
+alias trash='rm -rf $HOME/.Trash/*'
+alias atree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g' "
+alias k9='kill -9'
+alias kl='kill -15'
+alias size='du -sh'
+alias gri='grep -i'
+alias wg='wget'
+
+##################################################
+## for docker
+
 alias dp='docker pull'
+alias ubu='docker run -it ubuntu:latest bash'
+alias vimplus='docker run -it chxuan/ubuntu-vimplus'
+
+##################################################
+## for python
+
 alias ipy='ipython'
 alias pi3='sudo pip3 install'
 alias p3='/usr/bin/python3'
@@ -153,50 +169,55 @@ alias pr='sudo -H pip3 install -r requirements.txt'
 alias cs='pycodestyle'
 alias pe='pipenv'
 alias ve='virtualenv'
-alias ic='imgcat'
-alias ubu='docker run -it ubuntu:latest bash'
 alias jn='jupyter notebook'
 alias jl='jupyter-lab'
-alias face='face_recognition --cpus 4'
+alias p2a='pyinstaller -F' # python 2 app
+alias egg='python3 -m easy_install' # egg ***.egg
+alias avir='virtualenv venv; source venv/bin/activate; pip3 install -r requirements.txt; jupyter notebook'
+alias dvir='deactivate'
+
+##################################################
+## for third apps
+
+# ffmpeg
 alias ff='ffmpeg'
 alias ffcut='ffmpeg -i $src_video_name -ss $where_to_start -t $how_long -acodec copy -vcodec copy $output_name' #example: ffmpeg -ss 00:03:25 -t 00:19:07 -i japan-2.mp4 -vcodec copy -acodec copy j-2.mp4 
 alias ffcvt='ffmpeg -i $src_video_name $output_name' #example: ffmpeg -i japan.wmv japan-2.mp4 
-alias trash='rm -rf $HOME/.Trash/*'
-alias mb='musicbox'
-alias im='instantmusic'
-alias cute='nyancat'
-alias atree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g' "
-alias ql='qlmanage -p'
-alias kl='kill -9'
-alias size='du -sh'
-alias p2a='pyinstaller -F' # python 2 app
-alias egg='python3 -m easy_install' # egg ***.egg
-alias shk='shellcheck'
+
+# ytb
 alias ytbd='pc4 youtube-dl'
 alias ytd='youtube-dl -f best'
-alias avir='virtualenv venv; source venv/bin/activate; pip3 install -r requirements.txt; jupyter notebook'
-alias dvir='deactivate'
-alias gri='grep -i'
+alias ydi='youtube-dl-interactive'
+
+# pic
+alias ic='imgcat'
+alias face='face_recognition --cpus 4'
+
+# music
+alias mb='musicbox'
+alias im='instantmusic'
+
+alias cute='nyancat'
+alias ql='qlmanage -p'
 alias cs='codesign --force --deep --sign - /Applications/'
 alias tz='terminalizer'
 alias is='istats'
-alias nf='nativefier'
-alias ydi='youtube-dl-interactive'
 alias idg='idcardgenerator'
 alias gqs='git-quick-stats'
 alias sl='streamlit'
-alias of='onefetch'
 alias br='broot'
 alias drome='navidrome'
-alias wg='wget'
-alias hs='httpstat'
 alias pi='sudo port install'
 
+##################################################
 # Terminal Proxy Global
+
 alias setpxy="export ALL_PROXY=socks5://127.0.0.1:7891"
 alias unpxy="unset ALL_PROXY"
 
+##################################################
 # markdown on the terminal
+
 alias glw='glow'
 
 ##################################################
@@ -210,7 +231,6 @@ alias ass='GOOS=linux GOARCH=amd64 go tool compile -S'
 alias genass='go build -gcflags -S'
 alias assnoopt='go tool compile -S -N -l'
 alias genssa='GOSSAFUNC=main go build main.go'
-
 
 ##################################################
 # cannot open app on catalina
@@ -227,8 +247,8 @@ alias recv='croc x230'
 
 ##################################################
 ## for ios device
-
 ## https://www.tracenote.com/2017/08/16/appInstallRealDevice/
+
 alias ii='ideviceinstaller'
 alias iii='ideviceinstaller -i'
 alias idev='idevice_id -l'
@@ -236,9 +256,6 @@ alias iu='ideviceinstaller -U'
 alias ilog='idevicesyslog'
 alias icut='idevicescreenshot'
 alias idi='ideviceinfo'
-
-## msf - metasploit
-export PATH="$PATH:/opt/metasploit-framework/bin"
 
 ##################################################
 ## alias for dotfiles
@@ -329,7 +346,7 @@ ex ()
 }
 
 ##################################################
-## Create folder then cd in it
+## Create folder then cd into it
 
 function mkdircd(){
     mkdir -p "$@" && eval cd "\"\$$#\"";
@@ -344,7 +361,7 @@ alias reboot='sudo reboot'
 alias down='sudo shutdown -h now'
 
 ##################################################
-## git
+## git operation
 
 alias vr='vim README.md'
 alias cl='git clone'
@@ -409,18 +426,34 @@ alias ll='foo(){ lshow }; foo '
 alias l='ls -lh'
 
 ##################################################
-## echanced command
+## echanced common commands
 
 alias ec='exa -abghHli'
-alias shck='shellcheck'
+alias shk='shellcheck'
+alias hs='httpstat'
 alias hex='hexyl'
 
 ##################################################
-## path
+## GitHub enter path
 
-alias mine='cd /Volumes/2Tmac/github/mine'
-alias third='cd /Volumes/2Tmac/github/third'
-alias 2t='/Volumes/2Tmac/'
+t1='/Volumes/1Tmac'
+t2='/Volumes/2Tmac'
+
+if [ -d $t1 ] 
+then
+    alias mine='cd $t1/github/mine'
+    alias third='cd $t1/github/third'
+    alias lc='$t1/github/mine/LeetCode/'
+    alias 1t='$t1/'
+elif [ -d $t2 ]
+then
+    alias mine='cd $t2/github/mine'
+    alias third='cd $t2/github/third'
+    alias lc='$t2/github/mine/LeetCode/'
+    alias 2t='$t2/'
+else
+    echo "Target directory doesn't exist!"
+fi
 
 ##################################################
 ## adb
@@ -434,11 +467,6 @@ alias fr='fastboot reboot'
 alias asl='adb sideload'
 alias ap='adb push'
 alias pull='adb pull'
-
-##################################################
-## leetcode
-
-alias lc='/Volumes/2Tmac/github/mine/LeetCode/'
 
 ##################################################
 ## brew
@@ -458,6 +486,8 @@ alias pc4='proxychains4'
 alias pbi='proxychains4 brew install'
 alias pbu='proxychains4 brew uninstall'
 alias pci='proxychains4 brew install --cask'
+alias dl='proxychains4 wget'
+alias pgc='proxychains4 git clone'
 
 ##################################################
 ## cargo for rust
@@ -501,11 +531,6 @@ alias j='autojump'
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
 ##################################################
-## docker vimplus
-
-alias vimplus='docker run -it chxuan/ubuntu-vimplus'
-
-##################################################
 # mac softwareupdate
 
 alias macupdate='softwareupdate --all --install --force'
@@ -518,7 +543,7 @@ alias macupdate='softwareupdate --all --install --force'
 ##################################################
 ## homebrew china
 
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+alias rehb='/bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"'
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
@@ -540,4 +565,3 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 ##################################################
-

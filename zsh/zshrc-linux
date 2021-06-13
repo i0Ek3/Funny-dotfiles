@@ -79,6 +79,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  brew
   osx
   autojump
   sublime
@@ -119,37 +120,133 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-## common
+
+##################################################
+## alias for common commands
+
+# common ones
 alias c='clear'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias bc='bc -l'
 alias sha1='openssl sha1'
-alias cdiff='colordiff' # need install package
 alias mount='mount | column -t'
 alias h='history'
-#alias j='jobs -l'
+alias jb='jobs -l'
 alias ping='ping -c 5'
 alias fastping='ping -c 100 -s.2'
 alias ports='netstat -tulanp'
 alias wget='wget -c'
 alias path='echo -e ${PATH//:/\\n}'
 alias now='date'
+alias e='exit'
+alias o='open'
+alias od='open .'
+alias atree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g' "
+alias k9='kill -9'
+alias kl='kill -15'
+alias size='du -sh'
+alias gri='grep -i'
+alias wg='wget'
 
-## zsh&vim
+##################################################
+## for docker
+
+alias dp='docker pull'
+alias ubu='docker run -it ubuntu:latest bash'
+alias vimplus='docker run -it chxuan/ubuntu-vimplus'
+
+##################################################
+## for python
+
+alias ipy='ipython'
+alias pi3='sudo pip3 install'
+alias p3='/usr/bin/python3'
+alias p2='python2'
+alias pu='pip3 install --upgrade pip'
+alias pr='sudo -H pip3 install -r requirements.txt'
+alias cs='pycodestyle'
+alias pe='pipenv'
+alias ve='virtualenv'
+alias jn='jupyter notebook'
+alias jl='jupyter-lab'
+alias p2a='pyinstaller -F' # python 2 app
+alias egg='python3 -m easy_install' # egg ***.egg
+alias avir='virtualenv venv; source venv/bin/activate; pip3 install -r requirements.txt; jupyter notebook'
+alias dvir='deactivate'
+
+##################################################
+## for third apps
+
+# ffmpeg
+alias ff='ffmpeg'
+alias ffcut='ffmpeg -i $src_video_name -ss $where_to_start -t $how_long -acodec copy -vcodec copy $output_name' #example: ffmpeg -ss 00:03:25 -t 00:19:07 -i japan-2.mp4 -vcodec copy -acodec copy j-2.mp4 
+alias ffcvt='ffmpeg -i $src_video_name $output_name' #example: ffmpeg -i japan.wmv japan-2.mp4 
+
+# ytb
+alias ytbd='pc4 youtube-dl'
+alias ytd='youtube-dl -f best'
+alias ydi='youtube-dl-interactive'
+
+# pic
+alias ic='imgcat'
+alias face='face_recognition --cpus 4'
+
+# music
+alias mb='musicbox'
+alias im='instantmusic'
+
+alias cute='nyancat'
+alias ql='qlmanage -p'
+alias tz='terminalizer'
+alias is='istats'
+alias idg='idcardgenerator'
+alias gqs='git-quick-stats'
+alias sl='streamlit'
+alias br='broot'
+alias drome='navidrome'
+
+##################################################
+# Terminal Proxy Global
+
+alias setpxy="export ALL_PROXY=socks5://127.0.0.1:7891"
+alias unpxy="unset ALL_PROXY"
+
+##################################################
+# markdown on the terminal
+
+alias glw='glow'
+
+##################################################
+# go alias
+
+export GOPATH=$HOME/go
+alias report='sudo goreportcard'
+alias bench='go test -bench=.'
+alias gtest='go test -v'
+alias ass='GOOS=linux GOARCH=amd64 go tool compile -S'
+alias genass='go build -gcflags -S'
+alias assnoopt='go tool compile -S -N -l'
+alias genssa='GOSSAFUNC=main go build main.go'
+
+##################################################
+# croc
+
+alias send='croc send --code x230'
+alias recv='croc x230'
+
+##################################################
+## alias for dotfiles
+
 alias sz='source ~/.zshrc'
 alias sv='source ~/.vimrc'
 alias v='vim'
 alias v3='vim -O3'
 alias vz='vim ~/.zshrc'
 alias vv='vim ~/.vimrc'
-alias todo='vim ~/.todo'
-
-## tmux
 alias st='source ~/.tmux.conf'
 alias vt='vim ~/.tmux.conf'
 
-## split terminal by tmux
 tmux_init3()
 {
     tmux new-session -s "auto" -d -n "auto"
@@ -162,85 +259,28 @@ tmux_init3()
 }
 
 alias t3='tmux_init3'
-#alias t2='tmux_init2'
 
-## follows content refed by https://mhoffman.github.io/2015/05/21/how-to-navigate-directories-with-the-shell.html
-## -------------------------------
-## cd & bd
-function cd() {
-  if [ "$#" = "0" ]
-  then
-  pushd ${HOME} > /dev/null
-  elif [ -f "${1}" ]
-  then
-    ${EDITOR} ${1}
-  else
-  pushd "$1" > /dev/null
-  fi
-}
+##################################################
+## for node
 
-function bd(){
-  if [ "$#" = "0" ]
-  then
-    popd > /dev/null
-  else
-    for i in $(seq ${1})
-    do
-      popd > /dev/null
-    done
-  fi
-}
+## nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
-## lf = latest file
-alias lln="ls -lhtr  --time-style long-iso | tac | cat -n | tac | sed -s 's/^\s*\([0-9]*\)\s*\(.*\)/[\1]  \2 [\1]/'g && pwd"
-function lf() {
-    if [ "x${1}" == "x" ]
-    then
-        n=1 
-    else
-        n="${1}"
-    fi  
-    ls -rt1 | tail -n ${n} | head -n 1
-}
-## -------------------------------
-
-## Go alias
-alias report='sudo goreportcard'
-
-## node
 alias vn='vim ~/.npmrc'
 alias sn='source ~/.npmrc'
 alias ni='npm install -g'
 alias pni='pc4 npm install -g'
-alias wg='wget'
-alias hs='httpstat'
 
-# for code statistic
-#scc
-#cloc
+## npm global issue
+NPM_PACKAGES="${HOME}/.npm-packages"
+NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+PATH="$NPM_PACKAGES/bin:$PATH"
+export PATH="$(yarn global bin):$PATH"
 
-# markdown on the terminal
-alias glw='glow'
+##################################################
+## proxy
 
-# stress for go package
-stressit ()
-{
-    go test -c
-    # comment above and uncomment below to enable the race builder
-    # go test -c -race
-    
-    PKG=$(basename $(pwd))
-
-    while true ; do
-        export GOMAXPROCS=$[ 1 + $[ RANDOM % 128 ]]
-        ./$PKG.test $@ 2>&1
-    done
-}
-
-# go env
-export GOPATH=$HOME/go
-
-# proxy
 proxy ()
 {
     export http_proxy="http://127.0.0.1:8118";
@@ -258,7 +298,9 @@ noproxy ()
     echo -e "Proxy environment variable removed."
 }
 
+##################################################
 ## Simplize extract command
+
 ex ()
 {
   if [ -f $1 ] ; then
@@ -281,25 +323,24 @@ ex ()
   fi
 }
 
-## Create folder then cd in it
+##################################################
+## Create folder then cd into it
+
 function mkdircd(){
     mkdir -p "$@" && eval cd "\"\$$#\"";
 }
 
 alias mkcd='foo(){ mkdir -p "$1"; cd "$1" }; foo '
 
-## nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-
+##################################################
 ## system
+
 alias reboot='sudo reboot'
 alias down='sudo shutdown -h now'
 
-## for lua
-alias li='luarocks install'
+##################################################
+## git operation
 
-## git
 alias vr='vim README.md'
 alias cl='git clone'
 alias ga='git add .'
@@ -315,16 +356,60 @@ alias gb='git branch'
 alias gs='git switch'
 alias gss='git status -s'
 
+# git commit checker
+alias first='git first'
+alias next='git next'
+alias prev='git prev'
+alias last='git last'
+
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
-## for go cmd
-alias bench='go test -bench=.'
-alias gtest='go test -v'
+##################################################
+## ls enhanced
 
-## exa
+function lshow()
+{
+    dir='./.git'
+    if [ -d "$dir" ]
+    then
+        echo -e "\033[34m==============================================================================\033[0m"
+        echo "      \033[34mThis directory contains .git, please git pull first before ggpush.\033[0m"
+        echo -e "\033[34m==============================================================================\033[0m"
+        echo ""
+
+        ls -alh
+        
+        echo ""
+        echo -e "\033[34m==============================================================================\033[0m"
+        echo "      \033[34mThis directory contains .git, please git pull first before ggpush.\033[0m"
+        echo -e "\033[34m==============================================================================\033[0m"
+    else
+        ls -alh
+    fi
+
+}
+
+alias ll='foo(){ lshow }; foo '
+alias l='ls -lh'
+
+##################################################
+## echanced common commands
+
 alias ec='exa -abghHli'
+alias shk='shellcheck'
+alias hs='httpstat'
+alias hex='hexyl'
 
+##################################################
+## GitHub enter path
+
+alias mine='$HOME/github/mine'
+alias third='$HOME/github/third'
+alias lc='$HOME/github/mine/LeetCode/'
+
+##################################################
 ## adb
+
 alias ai='adb install'
 alias ffr='fastboot flash recovery'
 alias ad='adb devices'
@@ -335,122 +420,53 @@ alias asl='adb sideload'
 alias ap='adb push'
 alias pull='adb pull'
 
+##################################################
 ## cargo for rust
-alias ci='cargo install'
 
+alias ci='cargo install'
+# rust cargo env
+export PATH=$PATH:~/.cargo/bin/
+
+##################################################
 ## Q# for quantum programing
+
 alias act='conda activate'
 alias aqs='conda activate qsharp-env'
 alias dea='conda deactivate'
 alias cdi='conda install -c conda-forge jupyterlab notebook voila'
 
+##################################################
 ## web app
+
 alias nf='nativefier --name'
 
-## echanced command
-alias shck='shellcheck'
-alias hex='hexyl'
-
+##################################################
 ## database
+
 alias mys='mysql -p -u root'
 
+##################################################
 ## weather
+
 alias weather='curl wttr.in'
 
-## feeluown
-export PATH=~/.local/bin:$PATH
-
+##################################################
 ## autojump
-#alias j='autojump'
+
+alias j='autojump'
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
-## docker vimplus
-alias vimplus='docker run -it chxuan/ubuntu-vimplus'
+##################################################
+# mac softwareupdate
 
-alias e='exit'
+alias macupdate='softwareupdate --all --install --force'
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+##################################################
+## fzf
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-alias o='open'
-alias od='open .'
-alias pc4='proxychains4'
-alias dl='proxychains4 wget'
-alias pgc='proxychains4 git clone'
-alias dp='docker pull'
-alias ipy='ipython'
-alias pi3='sudo pip3 install'
-alias p3='/usr/bin/python3'
-alias p2='python2'
-alias pu='pip3 install --upgrade pip'
-alias pr='sudo -H pip3 install -r requirements.txt'
-alias cs='pycodestyle'
-alias pe='pipenv'
-alias ve='virtualenv'
-alias ic='imgcat'
-alias ubu='docker run -it ubuntu:latest bash'
-alias jn='jupyter notebook'
-alias jl='jupyter-lab'
-alias ff='ffmpeg'
-alias ffcut='ffmpeg -i $src_video_name -ss $where_to_start -t $how_long -acodec copy -vcodec copy $output_name' #example: ffmpeg -ss 00:03:25 -t 00:19:07 -i japan-2.mp4 -vcodec copy -acodec copy j-2.mp4 
-alias ffcvt='ffmpeg -i $src_video_name $output_name' #example: ffmpeg -i japan.wmv japan-2.mp4 
-alias trash='rm -rf $HOME/.Trash/*'
-alias mb='musicbox'
-alias im='instantmusic'
-alias atree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g' "
-alias ql='qlmanage -p'
-alias kl='kill -9'
-alias size='du -sh'
-alias p2a='pyinstaller -F' # python 2 app
-alias egg='python3 -m easy_install' # egg ***.egg
-alias shk='shellcheck'
-alias ytbd='pc4 youtube-dl'
-alias ytd='youtube-dl -f best'
-alias avir='virtualenv venv; source venv/bin/activate; pip3 install -r requirements.txt; jupyter notebook'
-alias dvir='deactivate'
-alias gri='grep -i'
-alias tz='terminalizer'
-alias is='istats'
-alias nf='nativefier'
-alias ydi='youtube-dl-interactive'
-alias idg='idcardgenerator'
-alias gqs='git-quick-stats'
-alias sl='streamlit'
-alias of='onefetch'
-alias br='broot'
-
-alias send='croc send --code x230'
-alias recv='croc x230'
-
-## Go Assembly & SSA
-alias ass='GOOS=linux GOARCH=amd64 go tool compile -S'
-alias genass='go build -gcflags -S'
-alias assnoopt='go tool compile -S -N -l'
-alias genssa='GOSSAFUNC=main go build main.go'
-
-# pyenv
-#export PYENV_ROOT="$HOME/.pyenv"
-#export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init -)"
-
-export PATH="/usr/local/sbin:$PATH"
-
-# Terminal Proxy Global
-alias setpxy="export ALL_PROXY=socks5://127.0.0.1:7891"
-alias unpxy="unset ALL_PROXY"
-
-alias tm="tmpmail"
-
-export PATH="/usr/local/opt/texinfo/bin:$PATH"
-
-## npm global issue
-NPM_PACKAGES="${HOME}/.npm-packages"
-NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
-PATH="$NPM_PACKAGES/bin:$PATH"
-export PATH="$(yarn global bin):$PATH"
+##################################################
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -467,12 +483,4 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/bitcomplete bit
-
-# starship for any shell
-# eval "$(starship init zsh)"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-
-# rust cargo env
-export PATH=$PATH:~/.cargo/bin/
+##################################################
