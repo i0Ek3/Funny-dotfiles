@@ -142,7 +142,7 @@ alias now='date'
 alias e='exit'
 alias o='open'
 alias od='open .'
-alias trash='rm -rf $HOME/.Trash/*'
+alias th='rm -rf $HOME/.Trash/*'
 alias atree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g' "
 alias k9='kill -9'
 alias kl='kill -15'
@@ -445,14 +445,14 @@ then
     alias third='cd $t1/github/third'
     alias lc='$t1/github/mine/LeetCode/'
     alias 1t='$t1/'
-elif [ -d $t2 ]
+fi
+
+if [ -d $t2 ]
 then
     alias mine='cd $t2/github/mine'
     alias third='cd $t2/github/third'
     alias lc='$t2/github/mine/LeetCode/'
     alias 2t='$t2/'
-else
-    echo "Target directory doesn't exist!"
 fi
 
 ##################################################
