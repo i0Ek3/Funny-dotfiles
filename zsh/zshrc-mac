@@ -126,6 +126,7 @@ source $ZSH/oh-my-zsh.sh
 
 # common ones
 alias c='clear'
+alias cdl='cd ..; ll'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias bc='bc -l'
@@ -467,6 +468,9 @@ alias fr='fastboot reboot'
 alias asl='adb sideload'
 alias ap='adb push'
 alias pull='adb pull'
+alias fd='fastboot --disable-verity --disable-verification flash vbmeta vbmeta.img'
+alias fw='fastboot -w'
+alias frf='fastboot reboot fastboot'
 
 ##################################################
 ## brew
