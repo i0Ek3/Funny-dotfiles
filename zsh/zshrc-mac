@@ -281,7 +281,16 @@ tmux_init3()
     tmux -2 attach-session -d
 }
 
+tmux_init2()
+{
+    tmux new-session -s "auto" -d -n "auto"
+    tmux split-window -v
+    tmux select-layout even-vertical
+    tmux -2 attach-session -d
+}
+
 alias t3='tmux_init3'
+alias t2='tmux_init2'
 
 ##################################################
 ## for node
