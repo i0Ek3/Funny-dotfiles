@@ -33,6 +33,13 @@ function cfg_tmux()
     echo "tmux.conf configurated!"
 }
 
+function cfg_gitignore()
+{
+    cp -r ./gitignore/gitignore ~/.gitignore
+    git config --global core.excludesfile ~/.gitignore
+    echo "global gitignore configurated!"
+}
+
 function lines()
 {
     echo "====================================="
@@ -51,6 +58,9 @@ function main()
     lines
     cfg_pip
     lines
+    cfg_gitignore
+    lines
+    zsh
     echo "All done, enjoys!"
     lines
 }

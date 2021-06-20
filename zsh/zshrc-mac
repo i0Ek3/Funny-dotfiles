@@ -152,6 +152,11 @@ alias gri='grep -i'
 alias wg='wget'
 
 ##################################################
+## for C++
+
+alias ccomplie='c++ -std=c++11 -stdlib=libc++'
+
+##################################################
 ## for docker
 
 alias dp='docker pull'
@@ -552,6 +557,17 @@ alias macupdate='softwareupdate --all --install --force'
 ## fzf
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+##################################################
+## bash completion
+
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+##################################################
+## for java
+
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+export CPPFLAGS="-I/usr/local/opt/openjdk/include"
 
 ##################################################
 ## homebrew china
