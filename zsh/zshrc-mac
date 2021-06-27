@@ -170,7 +170,8 @@ alias ipy='ipython'
 alias pi3='sudo pip3 install'
 alias p3='/usr/bin/python3'
 alias p2='python2'
-alias pu='pip3 install --upgrade pip'
+#alias pu='pip3 install --upgrade pip'
+alias pu='/usr/local/opt/python@3.9/bin/python3.9 -m pip install --upgrade pip'
 alias pr='sudo -H pip3 install -r requirements.txt'
 alias cs='pycodestyle'
 alias pe='pipenv'
@@ -394,10 +395,10 @@ alias gs='git switch'
 alias gss='git status -s'
 
 # git commit checker
-alias first='git first'
-alias next='git next'
-alias prev='git prev'
-alias last='git last'
+#alias first='git first'
+#alias next='git next'
+#alias prev='git prev'
+#alias last='git last'
 
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
