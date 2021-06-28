@@ -40,6 +40,12 @@ function cfg_gitignore()
     echo "global gitignore configurated!"
 }
 
+function cfg_gitpaging()
+{
+    cp ./gitpaging/git* /usr/local/bin
+    echo "git paging configurated!"
+}
+
 function lines()
 {
     echo "====================================="
@@ -59,6 +65,8 @@ function main()
     cfg_pip
     lines
     cfg_gitignore
+    lines
+    cfg_gitpaging
     lines
     zsh
     echo "All done, enjoys!"
