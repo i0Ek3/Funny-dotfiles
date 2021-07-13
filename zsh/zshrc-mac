@@ -237,11 +237,31 @@ alias glw='glow'
 export GOPATH=$HOME/go
 alias report='sudo goreportcard'
 alias bench='go test -bench=.'
-alias gtest='go test -v'
+alias gtd='go test .'
+alias gtv='go test -v'
+alias gtc='go test -c'
+alias gtcov='go test -coverprofile=coverage.out'
 alias ass='GOOS=linux GOARCH=amd64 go tool compile -S'
 alias genass='go build -gcflags -S'
-alias assnoopt='go tool compile -S -N -l'
 alias genssa='GOSSAFUNC=main go build main.go'
+
+# process order: 
+#   gnm ./main
+#   gcmp ./main.go -> main.o 
+#   gdmp main.o
+#   gpf
+#   gtr
+alias gnm='go tool nm'
+alias gcmp='go tool compile -N -l -S'
+alias gdmp='go tool objdump'
+alias gdmpf='go tool objdump -s'
+alias gpf='go tool pprof'
+alias gtr='go tool trace'
+alias gtcf='go tool cover -func=coverage.out'
+alias dlv='dlv exec'
+alias dlva='dlv attach'
+# dlv core ./example core.277282
+alias dlvc='dlv core'
 
 ##################################################
 # cannot open app on catalina
@@ -626,7 +646,6 @@ unset __conda_setup
 
 ##################################################
 
-
 # JINA_CLI_BEGIN
 
 ## autocomplete
@@ -654,3 +673,5 @@ ulimit -n 4096
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # JINA_CLI_END
+
+##################################################
